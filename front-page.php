@@ -1,6 +1,11 @@
 <?php
 /**
- * Front page - Demo13 design with full Global Route Consultant content.
+ * Front page - 100% Demo13 section structure, filled with Global Route
+ * Consultant content (all 2026 packages, rates and pages).
+ *
+ * Section order & ids match /demo13 exactly:
+ *   home (hero) -> about -> services -> pilgrimage -> tours -> why
+ *   -> group (steps) -> reviews -> faq -> contact -> last-call
  *
  * @package grc-consultant
  */
@@ -18,7 +23,7 @@ $grc_hero_bg = grc_setting( 'hero_image' );
 $grc_packages = grc_packages();
 $grc_monthly  = grc_monthly();
 
-/* Group packages by tier for the rates section. */
+/* Group packages by tier. */
 $grc_tiers = array();
 foreach ( $grc_packages as $grc_pkg ) {
 	$grc_tiers[ $grc_pkg['tier'] ][] = $grc_pkg;
@@ -34,8 +39,8 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			<h1><?php echo esc_html( grc_setting( 'hero_title_1' ) ); ?><br><?php echo esc_html( grc_setting( 'hero_title_2' ) ); ?><br><i><?php echo esc_html( grc_setting( 'hero_title_3' ) ); ?></i></h1>
 			<p><?php echo esc_html( grc_setting( 'hero_text' ) ); ?></p>
 			<div class="hero-actions">
-				<a class="btn" href="#packages">View Packages &amp; Rates ↗</a>
-				<a class="btn btn-light" href="#months">2026 Departures</a>
+				<a class="btn" href="#pilgrimage">View Packages &amp; Rates ↗</a>
+				<a class="btn btn-light" href="#tours">Explore Destinations</a>
 			</div>
 		</div>
 	</div>
@@ -123,7 +128,7 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			<p>Choose the service you need and send us your travel details. We’ll help you take the next step.</p>
 		</div>
 		<div class="service-grid">
-			<article class="service reveal"><div class="symbol">☾</div><h3>Umrah Packages</h3><p>Diamond, Gold, Silver and customized Umrah packages departing from Toronto Pearson (YYZ) throughout 2026 and 2027.</p><a href="#packages">VIEW UMRAH ↗</a></article>
+			<article class="service reveal"><div class="symbol">☾</div><h3>Umrah Packages</h3><p>Diamond, Gold, Silver and customized Umrah packages departing from Toronto Pearson (YYZ) throughout 2026 and 2027.</p><a href="#pilgrimage">VIEW UMRAH ↗</a></article>
 			<article class="service reveal"><div class="symbol">✧</div><h3>Hajj 2027</h3><p>Executive (11 days), Comfort Premium, Comfort Superior and Comfort Plus Hajj packages with guided support.</p><a href="<?php echo esc_url( home_url( '/hajj-2027-packages/' ) ); ?>">HAJJ ENQUIRY ↗</a></article>
 			<article class="service reveal"><div class="symbol">♧</div><h3>Group Tickets</h3><p>Flight enquiries for families, companies, schools and larger travel groups across Canada.</p><a href="<?php echo esc_url( home_url( '/group-umrah-packages/' ) ); ?>">GROUP ENQUIRY ↗</a></article>
 			<article class="service reveal"><div class="symbol">✈</div><h3>Flight Deals</h3><p>Domestic and international flight enquiries, return journeys and route planning from Canada.</p><a href="<?php echo esc_url( home_url( '/flight-deals/' ) ); ?>">ASK ABOUT FLIGHTS ↗</a></article>
@@ -132,11 +137,28 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			<article class="service reveal"><div class="symbol">◎</div><h3>Family Travel</h3><p>Seats together, connecting rooms, child visa processing - every family detail handled.</p><a href="<?php echo esc_url( home_url( '/family-umrah-packages/' ) ); ?>">PLAN TOGETHER ↗</a></article>
 			<article class="service reveal"><div class="symbol">♢</div><h3>Travel Guidance</h3><p>Visa help, Ziyarat planning, travel documents and terms explained before you book.</p><a href="<?php echo esc_url( home_url( '/umrah-travel-inquiry/' ) ); ?>">TALK TO US ↗</a></article>
 		</div>
+
+		<!-- Every content page, same demo13 card component -->
+		<div class="section-head reveal" style="margin-top:70px">
+			<div class="eyebrow">Explore everything</div>
+			<h2>Every page, one place.</h2>
+			<p>All Global Route Consultant content - destinations, packages, terms, guides and city pages.</p>
+		</div>
+		<div class="service-grid">
+			<?php foreach ( grc_content_pages() as $grc_cp ) : ?>
+				<article class="service reveal">
+					<div class="symbol">↗</div>
+					<h3><a href="<?php echo esc_url( home_url( '/' . $grc_cp['slug'] . '/' ) ); ?>" style="color:inherit"><?php echo esc_html( $grc_cp['title'] ); ?></a></h3>
+					<p><?php echo esc_html( wp_trim_words( $grc_cp['description'] ? $grc_cp['description'] : $grc_cp['title'], 16 ) ); ?></p>
+					<a href="<?php echo esc_url( home_url( '/' . $grc_cp['slug'] . '/' ) ); ?>">OPEN PAGE ↗</a>
+				</article>
+			<?php endforeach; ?>
+		</div>
 	</div>
 </section>
 
 <!-- ====================== PACKAGES & RATES ====================== -->
-<section class="section scenic-band" id="packages">
+<section class="section scenic-band" id="pilgrimage">
 	<div class="wrap">
 		<div class="section-head reveal">
 			<div class="eyebrow">Packages &amp; rates</div>
@@ -185,20 +207,16 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 				</article>
 			<?php endforeach; ?>
 		</div>
-	</div>
-</section>
 
-<!-- ===================== 2026 MONTHLY DEPARTURES ================== -->
-<section class="section" id="months">
-	<div class="wrap">
-		<div class="section-head reveal">
+		<!-- 2026 / 2027 monthly departures with full pricing tables -->
+		<div class="section-head reveal" style="margin-top:70px">
 			<div class="eyebrow">2026 &amp; 2027 departures</div>
 			<h2>Umrah packages by month.</h2>
-			<p>Every month has its own departure window and pricing. Here are the published rates from our 2026 group programme.</p>
+			<p>Every month has its own departure window and pricing - here are the published rates from our 2026 group programme.</p>
 		</div>
 		<div class="package-grid">
 			<?php foreach ( $grc_monthly as $grc_month ) : ?>
-				<article class="month-card reveal">
+				<article class="package reveal">
 					<div class="package-photo">
 						<?php if ( ! empty( $grc_month['image'] ) ) : ?>
 							<img src="<?php echo esc_url( grc_image( $grc_month['image'] ) ); ?>" alt="<?php echo esc_attr( $grc_month['title'] ); ?>" loading="lazy">
@@ -243,11 +261,11 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 </section>
 
 <!-- ========================== DESTINATIONS ======================= -->
-<section class="section" id="tours" style="background:#f4f0e7">
+<section class="section" id="tours">
 	<div class="wrap">
 		<div class="section-head reveal">
 			<div class="eyebrow">Where we travel</div>
-			<h2>Pick a place. We’ll handle the journey.</h2>
+			<h2>Pick a place. We’ll help with the journey.</h2>
 			<p>From the Haramain to cruise decks - a global portfolio handled by one Canadian team.</p>
 		</div>
 		<div class="destinations reveal">
@@ -256,10 +274,12 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			<div class="place"><img src="<?php echo esc_url( grc_image( '2025/11/featured-deals-2.jpeg' ) ); ?>" alt="Umrah packages" width="900" height="900"><div class="place-info"><span>UMRAH PACKAGES</span><h3>2026 Departures</h3></div></div>
 			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/07/Hajj-executive-2027-1.webp' ) ); ?>" alt="Hajj 2027 packages" width="900" height="900"><div class="place-info"><span>HAJJ 2027</span><h3>Executive &amp; Comfort</h3></div></div>
 			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/11/b1.webp' ) ); ?>" alt="Canada departures" width="900" height="900"><div class="place-info"><span>FROM CANADA</span><h3>Toronto &amp; GTA</h3></div></div>
-		</div></div></section>
+		</div>
+	</div>
+</section>
 
 <!-- ============================== WHY ============================= -->
-<section class="section" id="why">
+<section class="section" id="why" style="background:#f4f0e7">
 	<div class="wrap why-grid">
 		<div class="why-photo reveal">
 			<img src="<?php echo esc_url( grc_image( '2025/11/featured-deals-2.jpeg' ) ); ?>" alt="Global Route Consultant travel planning" loading="lazy">
@@ -281,28 +301,8 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 	</div>
 </section>
 
-<!-- ========================== ALL PAGES ========================== -->
-<section class="section" id="pages" style="background:#f4f0e7">
-	<div class="wrap">
-		<div class="section-head reveal">
-			<div class="eyebrow">Explore everything</div>
-			<h2>Every page, one place.</h2>
-			<p>All content from the Global Route Consultant site - destinations, packages, terms, guides and city pages.</p>
-		</div>
-		<div class="pages-grid">
-			<?php foreach ( grc_content_pages() as $grc_cp ) : ?>
-				<a class="page-card reveal" href="<?php echo esc_url( home_url( '/' . $grc_cp['slug'] . '/' ) ); ?>">
-					<span class="page-card-t">↗</span>
-					<span class="page-card-b"><?php echo esc_html( $grc_cp['title'] ); ?></span>
-					<span class="page-card-d"><?php echo esc_html( wp_trim_words( $grc_cp['description'] ? $grc_cp['description'] : $grc_cp['title'], 14 ) ); ?></span>
-				</a>
-			<?php endforeach; ?>
-		</div>
-	</div>
-</section>
-
 <!-- ============================= STEPS ============================ -->
-<section class="section steps" id="how">
+<section class="section steps" id="group">
 	<div class="wrap">
 		<div class="section-head reveal">
 			<div class="eyebrow">How booking works</div>
@@ -345,7 +345,7 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			<a class="btn" href="#contact">Ask Us Directly ↗</a>
 		</div>
 		<div class="reveal">
-			<div class="faq-item open"><button class="faq-q" type="button">How do I see package rates? <span>＋</span></button><div class="faq-a">Browse the Packages &amp; Rates section above - every Diamond, Gold, Silver and Hajj package is listed with per-person occupancy rates (Quad, Triple, Double). Monthly 2026 pricing tables are listed further down the page.</div></div>
+			<div class="faq-item open"><button class="faq-q" type="button">How do I see package rates? <span>＋</span></button><div class="faq-a">Browse the Packages &amp; Rates section above - every Diamond, Gold, Silver and Hajj package is listed with per-person occupancy rates (Quad, Triple, Double). Monthly 2026 pricing tables are listed further down the same section.</div></div>
 			<div class="faq-item"><button class="faq-q" type="button">Do I need a visa to perform Umrah from Canada? <span>＋</span></button><div class="faq-a">Yes. Canadian citizens and permanent residents require an Umrah visa. Global Route Consultant handles the complete visa application process on your behalf - no trips to the Saudi consulate required.</div></div>
 			<div class="faq-item"><button class="faq-q" type="button">Which airport do packages depart from? <span>＋</span></button><div class="faq-a">All our group packages depart from Toronto Pearson International Airport (YYZ). We serve pilgrims from Mississauga, Toronto, Brampton, Scarborough, Vaughan, Oakville, Hamilton and across Ontario and Canada.</div></div>
 			<div class="faq-item"><button class="faq-q" type="button">Can families travel together on group departures? <span>＋</span></button><div class="faq-a">Absolutely. We regularly accommodate families, couples, seniors and first-time pilgrims, arranging connecting rooms and family-specific accommodations.</div></div>
@@ -378,19 +378,7 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			</div>
 		<?php endif; ?>
 
-		<form class="contact-form reveal" id="contactForm" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-			<input type="hidden" name="action" value="grc_enquiry">
-			<h3>Send a travel enquiry</h3>
-			<div class="form-grid">
-				<div class="field"><label for="grc_c_name">YOUR NAME</label><input id="grc_c_name" name="grc_name" placeholder="Full name" required></div>
-				<div class="field"><label for="grc_c_email">EMAIL ADDRESS</label><input id="grc_c_email" name="grc_email" type="email" placeholder="<?php echo esc_attr( $grc_email ); ?>"></div>
-				<div class="field"><label for="grc_c_phone">PHONE / WHATSAPP</label><input id="grc_c_phone" name="grc_phone" type="tel" placeholder="Your number" required></div>
-				<div class="field"><label for="grc_c_type">WHAT DO YOU NEED?</label><select id="grc_c_type" name="grc_type"><option>Umrah Package</option><option>Hajj 2027</option><option>Flight Deal</option><option>Group/Family Tickets</option><option>Vacation / Cruise</option><option>Other</option></select></div>
-				<div class="field wide"><label for="grc_c_details">TRAVEL DETAILS</label><textarea id="grc_c_details" name="grc_details" placeholder="Destination, dates, travellers and your questions..." required></textarea></div>
-			</div>
-			<button class="btn" type="submit">Send Enquiry ↗</button>
-			<p class="fineprint">We use your details only to reply to this enquiry. Rates and availability are confirmed directly by Global Route Consultant.</p>
-		</form>
+		<?php get_template_part( 'template-parts/enquiry-form' ); ?>
 	</div>
 </section>
 

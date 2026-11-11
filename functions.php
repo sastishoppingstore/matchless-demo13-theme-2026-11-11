@@ -63,7 +63,7 @@ function grc_defaults() {
 		'phone_primary' => '+1 343-655-6606',
 		'phone_alt'     => '+1 289-643-6663',
 		'whatsapp'      => '13436556606',
-		'email'         => 'contact@matchlesstravels.ca',
+		'email'         => 'contact@globalrouteconsultant.ca',
 		'address'       => '2550 Argentia Road, Suite 107, Mississauga, ON L5N 5R1, Canada',
 		'hero_title_1'  => 'Global journeys,',
 		'hero_title_2'  => 'planned with',
