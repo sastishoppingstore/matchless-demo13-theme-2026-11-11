@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120" role="img" aria-label="Global Route Consultant logo">
+  <defs>
+    <linearGradient id="grcLime" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9ed83"/>
+      <stop offset="100%" stop-color="#c6dd5f"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="120" fill="none"/>
+  <!-- mark -->
+  <g transform="translate(12 16)">
+    <path d="M44 0c24 0 44 20 44 44S68 88 44 88 0 68 0 44 20 0 44 0z" fill="url(#grcLime)"/>
+    <path d="M44 12c17.7 0 32 14.3 32 32S61.7 76 44 76 12 61.7 12 44s14.3-32 32-32z" fill="none" stroke="#173d35" stroke-width="2" opacity=".35"/>
+    <path d="M27 58.5l9.6-24.4 7.2 12.4 8.6-8.2 8.6 3.4-13.6 11.6 4.6 8.4-8.2 1.9-4.4-9.6-8.4 8.1z" fill="#173d35"/>
+  </g>
+  <!-- wordmark -->
+  <g font-family="Manrope, 'Helvetica Neue', Arial, sans-serif">
+    <text x="112" y="52" font-size="27" font-weight="800" fill="#173d35" letter-spacing="-.6">GLOBAL ROUTE</text>
+    <text x="112" y="80" font-size="27" font-weight="800" fill="#173d35" letter-spacing="-.6">CONSULTANT</text>
+    <text x="113" y="99" font-size="10.5" font-weight="700" fill="#718079" letter-spacing="3.4">UMRAH • HAJJ • FLIGHTS • TOURS</text>
+  </g>
+</svg>

@@ -1,125 +1,409 @@
-<?php get_header(); ?>
-<section class="hero" id="home"><div class="wrap"><div class="hero-content reveal"><div class="kicker">Trusted travel from Canada</div><h1>Umrah & Hajj<br>journeys,<br><i>made easy.</i></h1><p>Matchless Travels offers Umrah and Hajj packages from Canada. Serving Toronto, Mississauga and the GTA. Explore Diamond, Gold & Silver packages, flights, vacations and more — with clear rates and caring support.</p><div class="hero-actions"><a class="btn" href="#packages">View Packages & Rates ↗</a><a class="btn btn-light" href="#contact">Contact Us</a></div></div></div><div class="wrap hero-bottom"><span><strong>MATCHLESS TRAVELS</strong><br>UMRAH · HAJJ · FLIGHTS · VACATIONS</span><span class="scroll-mark">SCROLL TO EXPLORE</span></div></section>
-<div class="wrap booking-shell" id="booking"><div class="booking reveal"><div class="booking-top"><h3>Plan your journey</h3><span>REQUEST A QUOTE</span></div><div class="tabs"><button class="tab active" data-kind="Umrah Package">☾ Umrah</button><button class="tab" data-kind="Hajj Package">✧ Hajj</button><button class="tab" data-kind="Flight Deal">✈ Flights</button><button class="tab" data-kind="Group/Family">♧ Group & Family</button><button class="tab" data-kind="Vacation/Cruise">⌖ Vacation</button></div><form id="quickForm"><div class="book-grid"><div class="field"><label>PACKAGE / ROUTE</label><input name="destination" placeholder="e.g. Diamond Umrah, Hajj 2027" required></div><div class="field"><label>TRAVEL DATE</label><input type="date" name="date" required></div><div class="field"><label>TRAVELLERS</label><select name="travellers"><option>1 Traveller</option><option>2 Travellers</option><option>3–5 Travellers</option><option>6–10 Travellers</option><option>10+ Travellers</option></select></div><div class="field"><label>YOUR NAME</label><input name="name" placeholder="Full name" required></div><button class="btn book-submit" type="submit">Send Enquiry ↗</button></div><input type="hidden" name="type" id="kind" value="Umrah Package"></form></div></div>
+<?php
+/**
+ * Front page - Demo13 design with full Global Route Consultant content.
+ *
+ * @package grc-consultant
+ */
 
-<section class="section" id="about"><div class="wrap intro"><div class="intro-visual reveal"><img class="big" src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1400&q=90" alt="Makkah pilgrimage"><img class="small" src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=900&q=90" alt="Holy Kaaba"><div class="round-note">Your journey<br>starts<br>here</div></div><div class="intro-copy reveal"><div class="eyebrow">About Matchless Travels</div><h2>Trusted Umrah & Hajj packages from Canada.</h2><p>Matchless Travels is a Mississauga-based travel agency specializing in Umrah, Hajj, and leisure travel packages for Canadians. We serve Toronto, Mississauga, Brampton and the GTA with Diamond, Gold and Silver Umrah packages, Hajj 2027 options, flight deals, vacations and cruises.</p><p>Explore our full range of packages with published rates and dates, or contact us for a customized plan that fits your family and schedule.</p><div class="ticks"><span>Diamond, Gold & Silver Umrah</span><span>Hajj 2027 packages</span><span>Family & group travel</span><span>Flights, vacations & cruises</span></div><a class="btn" href="#contact">Get in Touch ↗</a></div></div></section>
+get_header();
 
-<section class="section" id="services" style="background:#f4f0e7"><div class="wrap"><div class="section-head reveal"><div class="eyebrow">What we offer</div><h2>Services for every traveller.</h2><p>From Umrah and Hajj to flights and holidays — all in one place.</p></div><div class="service-grid">
-<article class="service reveal"><div class="symbol">✈</div><h3>Flight Deals</h3><p>Cheap flight deals from Canada and travel bookings.</p><a href="https://www.matchlesstravels.ca/flight-deals/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-<article class="service reveal"><div class="symbol">☾</div><h3>Umrah Packages</h3><p>Diamond, Gold, Silver and customized Umrah packages from Canada.</p><a href="https://www.matchlesstravels.ca/umrah-packages/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-<article class="service reveal"><div class="symbol">✧</div><h3>Hajj 2027</h3><p>Executive and comfort Hajj 2027 packages and guidance.</p><a href="https://www.matchlesstravels.ca/hajj-2027-with-matchless-travels/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-<article class="service reveal"><div class="symbol">♧</div><h3>Group &amp; Family</h3><p>Group Umrah and family Umrah packages tailored for your needs.</p><a href="https://www.matchlesstravels.ca/group-umrah-packages/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-<article class="service reveal"><div class="symbol">▣</div><h3>Customized Umrah</h3><p>Build your Umrah package your way with flexible options.</p><a href="https://www.matchlesstravels.ca/customized/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-<article class="service reveal"><div class="symbol">⌖</div><h3>Vacations &amp; Cruises</h3><p>Vacation packages and cruise deals including Disney &amp; Royal Caribbean.</p><a href="https://www.matchlesstravels.ca/royal-caribbean/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-<article class="service reveal"><div class="symbol">◎</div><h3>Travel Guidance</h3><p>Inquiry support, terms, and dedicated assistance for travellers.</p><a href="https://www.matchlesstravels.ca/umrah-travel-inquiry/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-<article class="service reveal"><div class="symbol">♢</div><h3>Best Price &amp; Support</h3><p>Serving Toronto, Mississauga and the GTA with trusted service.</p><a href="https://www.matchlesstravels.ca/contact/" target="_blank" rel="noopener">LEARN MORE ↗</a></article>
-</div></div></section>
+$grc_brand   = grc_setting( 'brand_name' );
+$grc_phone   = grc_setting( 'phone_primary' );
+$grc_tel     = preg_replace( '/[^0-9+]/', '', $grc_phone );
+$grc_email   = grc_setting( 'email' );
+$grc_addr    = grc_setting( 'address' );
+$grc_wa      = grc_setting( 'whatsapp' );
+$grc_hero_bg = grc_setting( 'hero_image' );
 
-<section class="section scenic-band" id="packages"><div class="wrap"><div class="section-head reveal"><div class="eyebrow">Packages & Rates</div><h2>Umrah packages, months & all rates.</h2><p>Browse monthly Umrah packages, Diamond/Gold/Silver tiers, and individual package rates from Matchless Travels.</p></div>
-<h3 style="color:var(--lime);font:700 28px 'Playfair Display';margin:10px 0 18px">Monthly & Category Packages</h3>
-<div class="package-grid"><article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="April 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>April 2026 Umrah Packages from Canada</h3><p>April 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized</p><div class="package-foot"><span>From CAD $2,049</span><a href="https://www.matchlesstravels.ca/april-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="August 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>August 2026 Umrah Packages from Canada</h3><p>August 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customize</p><div class="package-foot"><span>$2,499</span><a href="https://www.matchlesstravels.ca/august-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="December 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>December 2026 Umrah Packages from Canada</h3><p>December 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customi</p><div class="package-foot"><span>$3,049</span><a href="https://www.matchlesstravels.ca/december-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="February 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>February 2026 Umrah Packages from Canada</h3><p>February 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customi</p><div class="package-foot"><span>From CAD $2,049</span><a href="https://www.matchlesstravels.ca/february-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="Group Umrah Packages from Canada 2026"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>Group Umrah Packages from Canada 2026</h3><p>Group Umrah Packages from Canada 2026 | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized</p><div class="package-foot"><span>$2,499</span><a href="https://www.matchlesstravels.ca/group-umrah-packages/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="January 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>January 2026 Umrah Packages from Canada</h3><p>January 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customiz</p><div class="package-foot"><span>From CAD $2,049</span><a href="https://www.matchlesstravels.ca/january-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="January 2027 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>January 2027 Umrah Packages from Canada</h3><p>January 2027 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customiz</p><div class="package-foot"><span>From CAD $2,049</span><a href="https://www.matchlesstravels.ca/january-2027-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="July 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>July 2026 Umrah Packages from Canada</h3><p>July 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized </p><div class="package-foot"><span>$2,499</span><a href="https://www.matchlesstravels.ca/july-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="June 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>June 2026 Umrah Packages from Canada</h3><p>June 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized </p><div class="package-foot"><span>From CAD $2,049</span><a href="https://www.matchlesstravels.ca/june-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="March 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>March 2026 Umrah Packages from Canada</h3><p>March 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized</p><div class="package-foot"><span>From CAD $2,049</span><a href="https://www.matchlesstravels.ca/march-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="May 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>May 2026 Umrah Packages from Canada</h3><p>May 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized U</p><div class="package-foot"><span>From CAD $2,049</span><a href="https://www.matchlesstravels.ca/may-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="October 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>October 2026 Umrah Packages from Canada</h3><p>October 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customiz</p><div class="package-foot"><span>$2,349</span><a href="https://www.matchlesstravels.ca/october-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="September 2026 Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>September 2026 Umrah Packages from Canada</h3><p>September 2026 Umrah Packages from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Custom</p><div class="package-foot"><span>$2,499</span><a href="https://www.matchlesstravels.ca/september-2026-umrah-packages-canada/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="Diamond Umrah Packages Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>Diamond Umrah Packages Canada</h3><p>Diamond Umrah Packages Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized Umrah H</p><div class="package-foot"><span>$4,049.00</span><a href="https://www.matchlesstravels.ca/diamond-umrah-packages/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="Family Umrah Packages from Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>Family Umrah Packages from Canada</h3><p>Family Umrah Packages from Canada | Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized</p><div class="package-foot"><span>$2,500</span><a href="https://www.matchlesstravels.ca/family-umrah-packages/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="Gold Umrah Packages Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>Gold Umrah Packages Canada</h3><p>Gold Umrah Packages Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized Umrah Hajj</p><div class="package-foot"><span>$3,499.00</span><a href="https://www.matchlesstravels.ca/gold-umrah-packages/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="Group Umrah Packages from Canada 2026"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>Group Umrah Packages from Canada 2026</h3><p>Group Umrah Packages from Canada 2026 | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized</p><div class="package-foot"><span>$2,499</span><a href="https://www.matchlesstravels.ca/group-umrah-packages/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=1100&q=90" alt="Silver Umrah Packages Canada"><span class="package-label">UMRAH</span></div><div class="package-body"><h3>Silver Umrah Packages Canada</h3><p>Silver Umrah Packages Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized Umrah Ha</p><div class="package-foot"><span>$2,950.00</span><a href="https://www.matchlesstravels.ca/silver-umrah-packages/" target="_blank" rel="noopener">VIEW ↗</a></div></div></article></div>
-<h3 style="color:var(--lime);font:700 28px 'Playfair Display';margin:34px 0 18px">All Package Deals & Rates</h3>
-<div class="package-grid"><article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Affordable Umrah &amp;amp; Hajj Packages from Canada"><span class="package-label">HAJJ</span></div><div class="package-body"><h3>Affordable Umrah &amp;amp; Hajj Packages from Canada</h3><p>Affordable Umrah &amp; Hajj Packages from Canada Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silve</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,600.00 - $2,950.00</span><a href="https://www.matchlesstravels.ca/package/silver-umrah-package-january-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="April Umrah Package Diamond – 2nd to 12th, 2026"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>April Umrah Package Diamond – 2nd to 12th, 2026</h3><p>April Umrah Package Diamond – 2nd to 12th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Package</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,999.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/april-umrah-package-2nd-to-12th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="August Umrah Package Diamond – 14th to 21th Aug, 2026"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>August Umrah Package Diamond – 14th to 21th Aug, 2026</h3><p>August Umrah Package Diamond – 14th to 21th Aug, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah P</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,999.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/august-umrah-package-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="August Umrah Package Diamond – 1st to 11th, 2026"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>August Umrah Package Diamond – 1st to 11th, 2026</h3><p>August Umrah Package Diamond – 1st to 11th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packag</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,999.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/august-umrah-package-1st-to-11th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="August Umrah Package Gold – 1st to 11th, 2026"><span class="package-label">GOLD</span></div><div class="package-body"><h3>August Umrah Package Gold – 1st to 11th, 2026</h3><p>August Umrah Package Gold – 1st to 11th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,700.00 - $3,200.00</span><a href="https://www.matchlesstravels.ca/package/august-umrah-package-gold-1st-to-11th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="August Umrah Package Gold – 22nd Aug to 1st Sep, 2026"><span class="package-label">GOLD</span></div><div class="package-body"><h3>August Umrah Package Gold – 22nd Aug to 1st Sep, 2026</h3><p>August Umrah Package Gold – 22nd Aug to 1st Sep, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah P</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,700.00 - $3,200.00</span><a href="https://www.matchlesstravels.ca/package/august-umrah-package-gold-sep-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="August Umrah Package Silver – 1st to 11th, 2026"><span class="package-label">SILVER</span></div><div class="package-body"><h3>August Umrah Package Silver – 1st to 11th, 2026</h3><p>August Umrah Package Silver – 1st to 11th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Package</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,400.00 - $2,800.00</span><a href="https://www.matchlesstravels.ca/package/august-umrah-package-silver-1st-to-11th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="August Umrah Package Silver – 27th Aug to 06th Sep, 2026"><span class="package-label">SILVER</span></div><div class="package-body"><h3>August Umrah Package Silver – 27th Aug to 06th Sep, 2026</h3><p>August Umrah Package Silver – 27th Aug to 06th Sep, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umra</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,400.00 - $2,800.00</span><a href="https://www.matchlesstravels.ca/package/august-umrah-package-silver-27th-aug-to-06th-sep-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="December Umrah Gold Package from Toronto, Dec 22 to Jan 2 | Matchless Travels"><span class="package-label">GOLD</span></div><div class="package-body"><h3>December Umrah Gold Package from Toronto, Dec 22 to Jan 2 | Matchless Travels</h3><p>Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized Umrah Hajj 2027 Exe</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,499.00 - $4,399.00</span><a href="https://www.matchlesstravels.ca/package/december-umrah-gold-package-dec-22-jan-2/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="December Umrah Package Diamond – 20th to 29th, 2026"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>December Umrah Package Diamond – 20th to 29th, 2026</h3><p>December Umrah Package Diamond – 20th to 29th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Pac</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$4,049.00 - $4,549.00</span><a href="https://www.matchlesstravels.ca/package/december-umrah-package-diamond-december-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="December Umrah Package Diamond – 22nd to 2th Jan, 2027"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>December Umrah Package Diamond – 22nd to 2th Jan, 2027</h3><p>December Umrah Package Diamond – 22nd to 2th Jan, 2027 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$4,049.00 - $4,549.00</span><a href="https://www.matchlesstravels.ca/package/december-umrah-package-22nd-to-2th-jan-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="December Umrah Package Gold – 20th - 29th DEC, 2026"><span class="package-label">GOLD</span></div><div class="package-body"><h3>December Umrah Package Gold – 20th - 29th DEC, 2026</h3><p>December Umrah Package Gold – 20th - 29th DEC, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Pac</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,599.00 - $3,049.00</span><a href="https://www.matchlesstravels.ca/package/december-umrah-package-gold-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="December Umrah Silver Package from Toronto, Dec 22 to Jan 2 | Matchless Travels"><span class="package-label">SILVER</span></div><div class="package-body"><h3>December Umrah Silver Package from Toronto, Dec 22 to Jan 2 | Matchless Travels</h3><p>Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Customized Umrah Hajj 2027 Exe</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,950.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/december-umrah-silver-package-dec-22-jan-2/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="February Umrah Package – 05th to 15th, 2026"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>February Umrah Package – 05th to 15th, 2026</h3><p>February Umrah Package – 05th to 15th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Go</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,699.00 - $3,199.00</span><a href="https://www.matchlesstravels.ca/package/february-umrah-package-05th-to-15th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Grouped Diamond Umrah Package (OCTOBER – NOVEMBER 2024)"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>Grouped Diamond Umrah Package (OCTOBER – NOVEMBER 2024)</h3><p>Grouped Diamond Umrah Package (OCTOBER – NOVEMBER 2024) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,950.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/grouped-diamond-umrah-package-october-november-2024-2/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="January Umrah Package Gold – 15th to 25th, 2026"><span class="package-label">GOLD</span></div><div class="package-body"><h3>January Umrah Package Gold – 15th to 25th, 2026</h3><p>January Umrah Package Gold – 15th to 25th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Package</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,750.00 - $3,250.00</span><a href="https://www.matchlesstravels.ca/package/january-umrah-package-gold-15th-to-25th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="October Umrah Package Diamond – 10th to 20th, 2026"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>October Umrah Package Diamond – 10th to 20th, 2026</h3><p>October Umrah Package Diamond – 10th to 20th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Pack</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,999.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/october-umrah-package-10th-to-20th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="October Umrah Package Gold – 10th to 20th, 2026"><span class="package-label">GOLD</span></div><div class="package-body"><h3>October Umrah Package Gold – 10th to 20th, 2026</h3><p>October Umrah Package Gold – 10th to 20th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Package</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,700.00 - $3,200.00</span><a href="https://www.matchlesstravels.ca/package/october-umrah-package-gold-10th-to-20th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="October Umrah Package Silver – 10th to 20th, 2026"><span class="package-label">SILVER</span></div><div class="package-body"><h3>October Umrah Package Silver – 10th to 20th, 2026</h3><p>October Umrah Package Silver – 10th to 20th, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packa</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,400.00 - $2,800.00</span><a href="https://www.matchlesstravels.ca/package/october-umrah-package-silver-10th-to-20th-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Product"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Product</h3><p>Product - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packa</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,950.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/product/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah &amp;amp; Hajj Packages 2025 from Mississauga"><span class="package-label">HAJJ</span></div><div class="package-body"><h3>Umrah &amp;amp; Hajj Packages 2025 from Mississauga</h3><p>Umrah &amp; Hajj Packages 2025 from Mississauga Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,075.00 - $3,670.00</span><a href="https://www.matchlesstravels.ca/package/gold-umrah-package-january-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah &amp;amp; Hajj Packages from Canada 2025/24"><span class="package-label">HAJJ</span></div><div class="package-body"><h3>Umrah &amp;amp; Hajj Packages from Canada 2025/24</h3><p>Umrah &amp; Hajj Packages from Canada 2025/24 Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver U</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,745.00 - $3,160.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-february-2025-4/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah 2025 from Calgary"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah 2025 from Calgary</h3><p>Umrah 2025 from Calgary Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Cust</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,095.00 - $3,630.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-february-2025-2/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah 2025 from Calgary"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah 2025 from Calgary</h3><p>Umrah 2025 from Calgary Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Packages Cust</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,980.00 - $3,480.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-february-2025-3/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah 2025 from Toronto, Vancouver"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah 2025 from Toronto, Vancouver</h3><p>Umrah 2025 from Toronto, Vancouver Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Pa</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,299.00 - $3,699.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-february-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package &amp;gt;br&amp;gt;(9th Oct – 19th Oct 2025)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package &amp;gt;br&amp;gt;(9th Oct – 19th Oct 2025)</h3><p>Umrah Package &amp;gt;br&amp;gt;(9th Oct – 19th Oct 2025) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packa</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,299.00 - $3,799.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-9th-oct-19th-oct-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package (19th Dec – 30th Dec 2025)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package (19th Dec – 30th Dec 2025)</h3><p>Umrah Package (19th Dec – 30th Dec 2025) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$4,099.00 - $4,799.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-19th-dec-30th-oct-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package (19th Dec– 30th Dec 2025)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package (19th Dec– 30th Dec 2025)</h3><p>Umrah Package (19th Dec– 30th Dec 2025) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold U</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$4,099.00 - $4,799.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-26th-dec-3rd-jan-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package (23rd Aug – 2nd Sep 2025)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package (23rd Aug – 2nd Sep 2025)</h3><p>Umrah Package (23rd Aug – 2nd Sep 2025) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold U</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,299.00 - $3,799.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-23rd-aug-2nd-sep-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package (26th Dec– 3rd Jan 2026)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package (26th Dec– 3rd Jan 2026)</h3><p>Umrah Package (26th Dec– 3rd Jan 2026) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Um</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,349.00 - $3,849.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-26th-dec-03rd-jan-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package (7th Oct – 18th Oct 2025)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package (7th Oct – 18th Oct 2025)</h3><p>Umrah Package (7th Oct – 18th Oct 2025) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold U</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,349.00 - $3,849.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-7th-oct-18th-oct-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package (8th Oct – 22nd Oct 2025)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package (8th Oct – 22nd Oct 2025)</h3><p>Umrah Package (8th Oct – 22nd Oct 2025) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold U</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,799.00 - $4,599.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-8th-oct-22nd-oct-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package (9th Oct – 19th Oct 2025)"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Package (9th Oct – 19th Oct 2025)</h3><p>Umrah Package (9th Oct – 19th Oct 2025) - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold U</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,999.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-9th-oct-19th-oct-2025-2/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Package Diamond – 22nd Aug to 1st Sep, 2026"><span class="package-label">DIAMOND</span></div><div class="package-body"><h3>Umrah Package Diamond – 22nd Aug to 1st Sep, 2026</h3><p>Umrah Package Diamond – 22nd Aug to 1st Sep, 2026 - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packa</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$2,999.00 - $3,499.00</span><a href="https://www.matchlesstravels.ca/package/sep-umrah-package-diamond-2026/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Packages 2025 from Calgary, Toronto"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Packages 2025 from Calgary, Toronto</h3><p>Umrah Packages 2025 from Calgary, Toronto Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver U</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,150.00 - $3,800.00</span><a href="https://www.matchlesstravels.ca/package/umrah-package-january-2025/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article>
-<article class="package reveal"><div class="package-photo"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1100&q=90" alt="Umrah Packages 2025 from Calgary, Toronto, Vancouver"><span class="package-label">PACKAGE</span></div><div class="package-body"><h3>Umrah Packages 2025 from Calgary, Toronto, Vancouver</h3><p>Umrah Packages 2025 from Calgary, Toronto, Vancouver Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packag</p><div class="package-foot"><span style="font-weight:800;color:var(--forest)">$3,299.00 - $3,799.00</span><a href="https://www.matchlesstravels.ca/package/diamond-umrah-package-november-2024-copy/" target="_blank" rel="noopener">DETAILS ↗</a></div></div></article></div>
-</div></section>
+$grc_packages = grc_packages();
+$grc_monthly  = grc_monthly();
 
-<section class="section" id="tours"><div class="wrap"><div class="section-head reveal"><div class="eyebrow">Destinations & travel</div><h2>From Canada to the Haramain and beyond.</h2><p>Serving travellers across the GTA and Canada for pilgrimage and leisure trips.</p></div><div class="destinations reveal">
-<div class="place"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=1200&q=90" alt="Makkah"><div class="place-info"><span>SAUDI ARABIA</span><h3>Makkah & Madinah</h3></div></div>
-<div class="place"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=90" alt="Dubai"><div class="place-info"><span>UAE</span><h3>Dubai</h3></div></div>
-<div class="place"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=90" alt="Hotels"><div class="place-info"><span>STAYS</span><h3>Premium Hotels</h3></div></div>
-<div class="place"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=90" alt="Travel"><div class="place-info"><span>CANADA DEPARTURES</span><h3>From Toronto & GTA</h3></div></div>
-<div class="place"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=90" alt="Flights"><div class="place-info"><span>WORLDWIDE</span><h3>Flight Deals</h3></div></div>
-</div></div></section>
+/* Group packages by tier for the rates section. */
+$grc_tiers = array();
+foreach ( $grc_packages as $grc_pkg ) {
+	$grc_tiers[ $grc_pkg['tier'] ][] = $grc_pkg;
+}
+$grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
+?>
 
-<section class="section" id="why" style="background:#f4f0e7"><div class="wrap why-grid"><div class="why-photo reveal"><img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1300&q=90" alt="Travel planning"><div class="why-stamp">Travel with<br>confidence.</div></div><div class="intro-copy reveal"><div class="eyebrow">Why Matchless Travels</div><h2>Clear packages, real rates, caring support.</h2><p>We publish package options, dates and rates so you can compare and choose with confidence — and our team is here to help at every step.</p><div class="reason-list"><div class="reason"><b>Wide package range</b><p>Diamond, Gold, Silver, family, group and customized Umrah.</p></div><div class="reason"><b>Hajj & Umrah focus</b><p>Dedicated Hajj 2027 and year-round Umrah departures.</p></div><div class="reason"><b>Canada & GTA based</b><p>Serving Toronto, Mississauga, Brampton and all of Canada.</p></div><div class="reason"><b>Transparent rates</b><p>Package pricing and details available for informed decisions.</p></div><div class="reason"><b>More than pilgrimage</b><p>Flight deals, vacations and cruise options available.</p></div><div class="reason"><b>Easy to reach</b><p>Call or email us for inquiries and bookings.</p></div></div></div></div></section>
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="home" style="background-image:linear-gradient(90deg,rgba(12,38,31,.83),rgba(12,38,31,.25) 68%,rgba(12,38,31,.1)),url('<?php echo esc_url( $grc_hero_bg ); ?>');background-position:center 48%;background-size:cover">
+	<div class="wrap">
+		<div class="hero-content reveal">
+			<div class="kicker">Canada based · Global reach</div>
+			<h1><?php echo esc_html( grc_setting( 'hero_title_1' ) ); ?><br><?php echo esc_html( grc_setting( 'hero_title_2' ) ); ?><br><i><?php echo esc_html( grc_setting( 'hero_title_3' ) ); ?></i></h1>
+			<p><?php echo esc_html( grc_setting( 'hero_text' ) ); ?></p>
+			<div class="hero-actions">
+				<a class="btn" href="#packages">View Packages &amp; Rates ↗</a>
+				<a class="btn btn-light" href="#months">2026 Departures</a>
+			</div>
+		</div>
+	</div>
+	<div class="wrap hero-bottom">
+		<span><strong><?php echo esc_html( strtoupper( $grc_brand ) ); ?></strong><br>UMRAH · HAJJ · FLIGHTS · HOLIDAYS</span>
+		<span class="scroll-mark">SCROLL TO EXPLORE</span>
+	</div>
+</section>
 
-<section class="section steps" id="pages"><div class="wrap"><div class="section-head reveal"><div class="eyebrow">Complete site content</div><h2>All pages & information.</h2><p>Quick access to key pages from the Matchless Travels site content.</p></div><div class="steps-grid"><div class="step reveal"><div class="num">↗</div><h3>About Matchless Travels | Umrah &amp;amp; Hajj Agency Mississauga</h3><p style="word-break:break-word">About Matchless Travels | Umrah &amp; Hajj Agency Mississauga Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah P</p><a href="https://www.matchlesstravels.ca/about/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Careers at Matchless Travels Canada | Join Our Travel Team</h3><p style="word-break:break-word">Careers at Matchless Travels Canada | Join Our Travel Team Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah </p><a href="https://www.matchlesstravels.ca/careers/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Cheap Flight Deals from Canada</h3><p style="word-break:break-word">Cheap Flight Deals from Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages</p><a href="https://www.matchlesstravels.ca/flight-deals/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Contact Matchless Travels | Mississauga Travel Agency</h3><p style="word-break:break-word">Contact Matchless Travels | Mississauga Travel Agency Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packa</p><a href="https://www.matchlesstravels.ca/contact/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Customized Umrah Packages by Matchless Travels</h3><p style="word-break:break-word">Customized Umrah Packages by Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Sil</p><a href="https://www.matchlesstravels.ca/customized/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>December Umrah 2026: Package Terms</h3><p style="word-break:break-word">December Umrah 2026: Package Terms - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah </p><a href="https://www.matchlesstravels.ca/december-umrah-2026-terms/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Diamond Umrah</h3><p style="word-break:break-word">Diamond Umrah – Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah</p><a href="https://www.matchlesstravels.ca/packages/umrah/diamond-umrah/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Disney Cruise Line Packages Canada</h3><p style="word-break:break-word">Disney Cruise Line Packages Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Pack</p><a href="https://www.matchlesstravels.ca/disney-line/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Executive 11-Day Hajj 2026 Package Canada</h3><p style="word-break:break-word">Executive 11-Day Hajj 2026 Package Canada - Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umr</p><a href="https://www.matchlesstravels.ca/executive-11-days-hajj-2027/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Gold Umrah</h3><p style="word-break:break-word">Gold Umrah – Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Pa</p><a href="https://www.matchlesstravels.ca/packages/umrah/gold-umrah/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Hajj &amp;amp; Umrah Packages from Canada | Matchless travels Inc</h3><p style="word-break:break-word">Hajj &amp; Umrah Packages from Canada | Matchless travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah P</p><a href="https://www.matchlesstravels.ca/umrah-packages-26/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Hajj Packages Canada 2026</h3><p style="word-break:break-word">Hajj Packages Canada 2026 | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silv</p><a href="https://www.matchlesstravels.ca/hajj-2026/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Hajj Packages Canada 2027</h3><p style="word-break:break-word">Hajj Packages Canada 2027 | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silv</p><a href="https://www.matchlesstravels.ca/hajj-2027-with-matchless-travels/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>How Much Does Umrah Cost from Canada in 2026?</h3><p style="word-break:break-word">How Much Does Umrah Cost from Canada in 2026? | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold</p><a href="https://www.matchlesstravels.ca/umrah-package-cost-canada/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>How to Navigate Gaming Club Casino Canada’s Website</h3><p style="word-break:break-word">How to Navigate Gaming Club Casino Canada’s Website - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Pac</p><a href="https://www.matchlesstravels.ca/how-to-navigate-gaming-club-casino-canadas-website/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Matchless Travels&#x27; Awards holders &amp;amp; Accolades</h3><p style="word-break:break-word">Matchless Travels&#x27; Awards holders &amp; Accolades Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silv</p><a href="https://www.matchlesstravels.ca/our-awards/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Meet Our Team</h3><p style="word-break:break-word">Meet Our Team | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umrah Pac</p><a href="https://www.matchlesstravels.ca/our-team/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Page Not Found</h3><p style="word-break:break-word">Page Not Found - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umra</p><a href="https://www.matchlesstravels.ca/executive-11-days-hajj-2026/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>PayLink Portal</h3><p style="word-break:break-word">PayLink Portal - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umra</p><a href="https://www.matchlesstravels.ca/paylink-2/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Personalized Umrah Travel Inquiry</h3><p style="word-break:break-word">Personalized Umrah Travel Inquiry - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah P</p><a href="https://www.matchlesstravels.ca/umrah-travel-inquiry/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Privacy Policy</h3><p style="word-break:break-word">Privacy Policy - Matchless Travels Inc Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages Silver Umra</p><a href="https://www.matchlesstravels.ca/privacy-policy/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Ramadan Umrah Packages Canada 2026</h3><p style="word-break:break-word">Ramadan Umrah Packages Canada 2026 | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Pack</p><a href="https://www.matchlesstravels.ca/ramadan-umrah-packages/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Royal Caribbean Cruises Canada</h3><p style="word-break:break-word">Royal Caribbean Cruises Canada | Matchless Travels Book Now 0 No products in the cart. Home Umrah Diamond Umrah Packages Gold Umrah Packages</p><a href="https://www.matchlesstravels.ca/royal-caribbean/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div>
-<div class="step reveal"><div class="num">↗</div><h3>Secure Payment — Matchless Travels</h3><p style="word-break:break-word">Secure Payment — Matchless Travels Matchless Travels Canada This payment link is invalid. Need help? Contact us</p><a href="https://www.matchlesstravels.ca/pay/" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-size:10px;font-weight:800;color:var(--forest)">OPEN PAGE ↗</a></div></div></div></section>
+<!-- ======================== BOOKING WIDGET ======================= -->
+<div class="wrap booking-shell" id="booking">
+	<div class="booking reveal">
+		<div class="booking-top">
+			<h3>Where would you like to go?</h3>
+			<span>LET'S START PLANNING</span>
+		</div>
+		<div class="tabs" role="tablist" aria-label="Travel type">
+			<button class="tab active" type="button" data-kind="Umrah Package">☾ Umrah</button>
+			<button class="tab" type="button" data-kind="Hajj Package">✧ Hajj</button>
+			<button class="tab" type="button" data-kind="Flight Deal">✈ Flights</button>
+			<button class="tab" type="button" data-kind="Group Tickets">♧ Group tickets</button>
+			<button class="tab" type="button" data-kind="Tour Package">⌖ Holidays &amp; Cruises</button>
+		</div>
+		<form id="quickForm" class="grc-quick-form">
+			<div class="book-grid">
+				<div class="field">
+					<label for="grc-destination">DESTINATION / PACKAGE</label>
+					<input id="grc-destination" name="destination" placeholder="e.g. Diamond Umrah, Hajj 2027" required>
+				</div>
+				<div class="field">
+					<label for="grc-date">TRAVEL DATE</label>
+					<input id="grc-date" type="date" name="date" required>
+				</div>
+				<div class="field">
+					<label for="grc-travellers">TRAVELLERS</label>
+					<select id="grc-travellers" name="travellers">
+						<option>1 Traveller</option>
+						<option>2 Travellers</option>
+						<option>3–5 Travellers</option>
+						<option>6–10 Travellers</option>
+						<option>10+ Travellers</option>
+					</select>
+				</div>
+				<div class="field">
+					<label for="grc-name">YOUR NAME</label>
+					<input id="grc-name" name="name" placeholder="Full name" required>
+				</div>
+				<button class="btn book-submit" type="submit">Send Enquiry ↗</button>
+			</div>
+			<input type="hidden" name="type" id="kind" value="Umrah Package">
+		</form>
+	</div>
+</div>
 
-<section class="section" id="faq" style="background:#f4f0e7"><div class="wrap faq-layout"><div class="section-head reveal"><div class="eyebrow">Helpful info</div><h2>Questions about packages & rates?</h2><p>Contact Matchless Travels for current availability, exact inclusions, and booking terms for any package.</p><a class="btn" href="#contact">Ask Us ↗</a></div><div class="reveal">
-<div class="faq-item open"><button class="faq-q">How do I see package rates? <span>＋</span></button><div class="faq-a">Browse the Packages & Rates section above for monthly packages and individual deals with listed prices. For the latest availability and inclusions, contact us directly.</div></div>
-<div class="faq-item"><button class="faq-q">Do you offer Diamond, Gold and Silver Umrah? <span>＋</span></button><div class="faq-a">Yes. Matchless Travels offers Diamond, Gold and Silver Umrah packages with multiple departure dates, plus family, group and customized options.</div></div>
-<div class="faq-item"><button class="faq-q">Do you have Hajj 2027 packages? <span>＋</span></button><div class="faq-a">Yes. Hajj 2027 packages and details are available — please contact us for current options and guidance.</div></div>
-<div class="faq-item"><button class="faq-q">Where are you located? <span>＋</span></button><div class="faq-a">2550 Argentia Road, Suite 107, Mississauga, ON L5N 5R1, Canada. We serve Mississauga, Toronto, Brampton, the GTA and travellers across Canada.</div></div>
-<div class="faq-item"><button class="faq-q">How can I book or inquire? <span>＋</span></button><div class="faq-a">Call (289) 643-6663 or email contact@matchlesstravels.ca. You can also send an enquiry using the form below.</div></div>
-</div></div></section>
+<!-- ============================ ABOUT ============================ -->
+<section class="section" id="about">
+	<div class="wrap intro">
+		<div class="intro-visual reveal">
+			<img class="big" src="<?php echo esc_url( grc_image( '2026/04/Umrah-Package-2026.webp' ) ); ?>" alt="Makkah and Madinah pilgrimage package" loading="lazy">
+			<img class="small" src="<?php echo esc_url( GRC_URI . '/assets/img/logo.svg' ); ?>" alt="Global Route Consultant logo" loading="lazy">
+			<div class="round-note">Plan with<br>a global<br>perspective</div>
+		</div>
+		<div class="intro-copy reveal">
+			<div class="eyebrow">A little about us</div>
+			<h2>Travel is more than places. It’s how they make you feel.</h2>
+			<p>Global Route Consultant brings your travel enquiries together in one welcoming place. Whether you are planning Umrah, Hajj, flights, a cruise or a family holiday, start by telling us what matters to you.</p>
+			<p>We are a TICO-registered, IATA-certified and ACTO-registered agency based in Mississauga, Ontario - proudly serving pilgrims from across the Greater Toronto Area and all of Canada.</p>
+			<div class="ticks">
+				<span>Umrah &amp; Hajj travel</span>
+				<span>Diamond, Gold &amp; Silver</span>
+				<span>Group &amp; family tickets</span>
+				<span>Flights, cruises &amp; holidays</span>
+			</div>
+			<a class="btn" href="#contact">Get to Know Us ↗</a>
+		</div>
+	</div>
+</section>
 
-<section class="section contact" id="contact"><div class="wrap contact-grid"><div class="contact-copy reveal"><div class="eyebrow">Get in touch</div><h2>Contact Matchless Travels.</h2><p>Have questions about a package, rates or dates? Reach out and we’ll help you plan.</p><div class="contact-details"><div><b>☎</b><span>(289) 643-6663</span></div><div><b>✉</b><span>contact@matchlesstravels.ca</span></div><div><b>◉</b><span>2550 Argentia Road, Suite 107, Mississauga, ON L5N 5R1, Canada</span></div></div><a class="btn" style="margin-top:25px" href="tel:+12896436663">Call (289) 643-6663 ↗</a></div>
-<form class="contact-form reveal" id="contactForm"><h3>Send an enquiry</h3><div class="form-grid"><div class="field"><label>YOUR NAME</label><input name="name" placeholder="Full name" required></div><div class="field"><label>EMAIL ADDRESS</label><input name="email" type="email" placeholder="contact@matchlesstravels.ca"></div><div class="field"><label>PHONE</label><input name="phone" type="tel" placeholder="Your number" required></div><div class="field"><label>INTERESTED IN</label><select name="type"><option>Umrah Package</option><option>Hajj 2027</option><option>Flight Deal</option><option>Group/Family</option><option>Vacation/Cruise</option><option>Other</option></select></div><div class="field wide"><label>DETAILS</label><textarea name="message" placeholder="Package, dates, travellers and questions..." required></textarea></div></div><button class="btn" type="submit">Send Enquiry ↗</button><p class="fineprint">This form opens your email client to send details to contact@matchlesstravels.ca. You can also call us directly.</p></form>
-</div></section>
+<!-- =========================== SERVICES ========================== -->
+<section class="section" id="services" style="background:#f4f0e7">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<div class="eyebrow">What we can help with</div>
+			<h2>One travel partner.<br>Many ways to explore.</h2>
+			<p>Choose the service you need and send us your travel details. We’ll help you take the next step.</p>
+		</div>
+		<div class="service-grid">
+			<article class="service reveal"><div class="symbol">☾</div><h3>Umrah Packages</h3><p>Diamond, Gold, Silver and customized Umrah packages departing from Toronto Pearson (YYZ) throughout 2026 and 2027.</p><a href="#packages">VIEW UMRAH ↗</a></article>
+			<article class="service reveal"><div class="symbol">✧</div><h3>Hajj 2027</h3><p>Executive (11 days), Comfort Premium, Comfort Superior and Comfort Plus Hajj packages with guided support.</p><a href="<?php echo esc_url( home_url( '/hajj-2027-packages/' ) ); ?>">HAJJ ENQUIRY ↗</a></article>
+			<article class="service reveal"><div class="symbol">♧</div><h3>Group Tickets</h3><p>Flight enquiries for families, companies, schools and larger travel groups across Canada.</p><a href="<?php echo esc_url( home_url( '/group-umrah-packages/' ) ); ?>">GROUP ENQUIRY ↗</a></article>
+			<article class="service reveal"><div class="symbol">✈</div><h3>Flight Deals</h3><p>Domestic and international flight enquiries, return journeys and route planning from Canada.</p><a href="<?php echo esc_url( home_url( '/flight-deals/' ) ); ?>">ASK ABOUT FLIGHTS ↗</a></article>
+			<article class="service reveal"><div class="symbol">▣</div><h3>Customized Umrah</h3><p>Build your own package - nights, hotel tier, occupancy, flight needed and departure airport.</p><a href="<?php echo esc_url( home_url( '/customized/' ) ); ?>">CUSTOMIZE ↗</a></article>
+			<article class="service reveal"><div class="symbol">⌖</div><h3>Vacations &amp; Cruises</h3><p>Disney Cruise Line, Royal Caribbean and leisure vacation packages for families and groups.</p><a href="<?php echo esc_url( home_url( '/royal-caribbean/' ) ); ?>">VIEW TOURS ↗</a></article>
+			<article class="service reveal"><div class="symbol">◎</div><h3>Family Travel</h3><p>Seats together, connecting rooms, child visa processing - every family detail handled.</p><a href="<?php echo esc_url( home_url( '/family-umrah-packages/' ) ); ?>">PLAN TOGETHER ↗</a></article>
+			<article class="service reveal"><div class="symbol">♢</div><h3>Travel Guidance</h3><p>Visa help, Ziyarat planning, travel documents and terms explained before you book.</p><a href="<?php echo esc_url( home_url( '/umrah-travel-inquiry/' ) ); ?>">TALK TO US ↗</a></article>
+		</div>
+	</div>
+</section>
 
-<section class="last-call"><div class="wrap call-inner"><div><h2>Ready to book your package?</h2><p>Call Matchless Travels for rates, availability and guidance.</p></div><a class="btn" href="tel:+12896436663">Call (289) 643-6663 ↗</a></div></section>
-<?php get_footer(); ?>
+<!-- ====================== PACKAGES & RATES ====================== -->
+<section class="section scenic-band" id="packages">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<div class="eyebrow">Packages &amp; rates</div>
+			<h2>Real packages.<br>Real 2026 rates.</h2>
+			<p>Every Diamond, Gold, Silver and Hajj package with per-person occupancy rates - quoted in CAD, taxes included where stated.</p>
+		</div>
+
+		<div class="filter-row reveal" id="grc-tier-filter" role="group" aria-label="Filter packages by tier">
+			<button class="active" type="button" data-tier="all">All Packages</button>
+			<?php foreach ( $grc_tier_order as $grc_tier ) : ?>
+				<?php if ( empty( $grc_tiers[ $grc_tier ] ) ) { continue; } ?>
+				<button type="button" data-tier="<?php echo esc_attr( $grc_tier ); ?>"><?php echo esc_html( $grc_tier ); ?> (<?php echo esc_html( count( $grc_tiers[ $grc_tier ] ) ); ?>)</button>
+			<?php endforeach; ?>
+		</div>
+
+		<div class="package-grid" id="grc-package-grid">
+			<?php foreach ( $grc_packages as $grc_pkg ) : ?>
+				<?php
+				$grc_img   = grc_image( $grc_pkg['image'] );
+				$grc_price = $grc_pkg['price_min'] ? grc_money( $grc_pkg['price_min'] ) : 'Contact for rates';
+				?>
+				<article class="package reveal" data-tier="<?php echo esc_attr( $grc_pkg['tier'] ); ?>">
+					<div class="package-photo">
+						<?php if ( $grc_img ) : ?>
+							<img src="<?php echo esc_url( $grc_img ); ?>" alt="<?php echo esc_attr( $grc_pkg['title'] ); ?>" loading="lazy">
+						<?php endif; ?>
+						<span class="package-label"><?php echo esc_html( grc_tier_label( $grc_pkg['tier'] ) ); ?></span>
+					</div>
+					<div class="package-body">
+						<h3><?php echo esc_html( $grc_pkg['title'] ); ?></h3>
+						<?php if ( ! empty( $grc_pkg['description'] ) ) : ?>
+							<p><?php echo esc_html( wp_trim_words( $grc_pkg['description'], 24 ) ); ?></p>
+						<?php endif; ?>
+						<?php if ( ! empty( $grc_pkg['rates'] ) ) : ?>
+							<div class="package-meta">
+								<?php foreach ( $grc_pkg['rates'] as $grc_rate ) : ?>
+									<span class="chip"><?php echo esc_html( $grc_rate['label'] ); ?> · <?php echo esc_html( grc_money( $grc_rate['price'] ) ); ?></span>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
+						<div class="package-foot">
+							<span class="from">from <strong><?php echo esc_html( $grc_price ); ?></strong></span>
+							<a href="<?php echo esc_url( grc_item_url( $grc_pkg['url'] ) ); ?>">DETAILS ↗</a>
+						</div>
+					</div>
+				</article>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+
+<!-- ===================== 2026 MONTHLY DEPARTURES ================== -->
+<section class="section" id="months">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<div class="eyebrow">2026 &amp; 2027 departures</div>
+			<h2>Umrah packages by month.</h2>
+			<p>Every month has its own departure window and pricing. Here are the published rates from our 2026 group programme.</p>
+		</div>
+		<div class="package-grid">
+			<?php foreach ( $grc_monthly as $grc_month ) : ?>
+				<article class="month-card reveal">
+					<div class="package-photo">
+						<?php if ( ! empty( $grc_month['image'] ) ) : ?>
+							<img src="<?php echo esc_url( grc_image( $grc_month['image'] ) ); ?>" alt="<?php echo esc_attr( $grc_month['title'] ); ?>" loading="lazy">
+						<?php endif; ?>
+						<span class="package-label">GROUP DEPARTURE</span>
+					</div>
+					<div class="package-body">
+						<h3><?php echo esc_html( $grc_month['title'] ); ?></h3>
+						<?php if ( ! empty( $grc_month['table'] ) ) : ?>
+							<table class="rate-table">
+								<thead>
+									<tr>
+										<?php foreach ( $grc_month['table'][0] as $grc_cell ) : ?>
+											<th><?php echo esc_html( $grc_cell ); ?></th>
+										<?php endforeach; ?>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ( array_slice( $grc_month['table'], 1 ) as $grc_row ) : ?>
+										<tr>
+											<?php foreach ( $grc_row as $grc_i => $grc_cell ) : ?>
+												<?php if ( 0 === $grc_i ) : ?>
+													<td><strong><?php echo esc_html( $grc_cell ); ?></strong></td>
+												<?php else : ?>
+													<td class="num"><?php echo esc_html( $grc_cell ); ?></td>
+												<?php endif; ?>
+											<?php endforeach; ?>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+						<?php endif; ?>
+						<div class="package-foot">
+							<span class="from">Pricing table</span>
+							<a href="<?php echo esc_url( grc_item_url( $grc_month['url'] ) ); ?>">VIEW MONTH ↗</a>
+						</div>
+					</div>
+				</article>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+
+<!-- ========================== DESTINATIONS ======================= -->
+<section class="section" id="tours" style="background:#f4f0e7">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<div class="eyebrow">Where we travel</div>
+			<h2>Pick a place. We’ll handle the journey.</h2>
+			<p>From the Haramain to cruise decks - a global portfolio handled by one Canadian team.</p>
+		</div>
+		<div class="destinations reveal">
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/04/Umrah-Package-2026.webp' ) ); ?>" alt="Makkah and Madinah" width="1200" height="800"><div class="place-info"><span>SAUDI ARABIA</span><h3>Makkah &amp; Madinah</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/10/MTC-Saudi-Airline-umrah.jpg' ) ); ?>" alt="Flights to Saudi Arabia" width="900" height="900"><div class="place-info"><span>SAUDIA AIRLINES</span><h3>Direct Flights</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2025/11/featured-deals-2.jpeg' ) ); ?>" alt="Umrah packages" width="900" height="900"><div class="place-info"><span>UMRAH PACKAGES</span><h3>2026 Departures</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/07/Hajj-executive-2027-1.webp' ) ); ?>" alt="Hajj 2027 packages" width="900" height="900"><div class="place-info"><span>HAJJ 2027</span><h3>Executive &amp; Comfort</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/11/b1.webp' ) ); ?>" alt="Canada departures" width="900" height="900"><div class="place-info"><span>FROM CANADA</span><h3>Toronto &amp; GTA</h3></div></div>
+		</div></div></section>
+
+<!-- ============================== WHY ============================= -->
+<section class="section" id="why">
+	<div class="wrap why-grid">
+		<div class="why-photo reveal">
+			<img src="<?php echo esc_url( grc_image( '2025/11/featured-deals-2.jpeg' ) ); ?>" alt="Global Route Consultant travel planning" loading="lazy">
+			<div class="why-stamp">Go with<br>confidence.</div>
+		</div>
+		<div class="intro-copy reveal">
+			<div class="eyebrow">Why Global Route Consultant</div>
+			<h2>Good journeys begin with good people.</h2>
+			<p>We want every traveller to feel heard, informed and confident while exploring their options. Here’s what guides the way we work.</p>
+			<div class="reason-list">
+				<div class="reason"><b>136+ Google reviews</b><p>4.6★ rated - one of the highest-reviewed Umrah agencies in the GTA.</p></div>
+				<div class="reason"><b>TICO registered</b><p>Your booking is fully protected under Ontario’s travel industry regulations.</p></div>
+				<div class="reason"><b>Imam-led groups</b><p>Travel with an experienced guide for a spiritually fulfilling journey.</p></div>
+				<div class="reason"><b>Saudi Tourism Premier Partner</b><p>Direct relationships with hotels and ground operators in Saudi Arabia.</p></div>
+				<div class="reason"><b>Local Mississauga office</b><p>Visit us in person at 2550 Argentia Road, Suite 107.</p></div>
+				<div class="reason"><b>One easy contact</b><p>Call, email or WhatsApp a dedicated travel consultant.</p></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- ========================== ALL PAGES ========================== -->
+<section class="section" id="pages" style="background:#f4f0e7">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<div class="eyebrow">Explore everything</div>
+			<h2>Every page, one place.</h2>
+			<p>All content from the Global Route Consultant site - destinations, packages, terms, guides and city pages.</p>
+		</div>
+		<div class="pages-grid">
+			<?php foreach ( grc_content_pages() as $grc_cp ) : ?>
+				<a class="page-card reveal" href="<?php echo esc_url( home_url( '/' . $grc_cp['slug'] . '/' ) ); ?>">
+					<span class="page-card-t">↗</span>
+					<span class="page-card-b"><?php echo esc_html( $grc_cp['title'] ); ?></span>
+					<span class="page-card-d"><?php echo esc_html( wp_trim_words( $grc_cp['description'] ? $grc_cp['description'] : $grc_cp['title'], 14 ) ); ?></span>
+				</a>
+			<?php endforeach; ?>
+		</div>
+	</div>
+</section>
+
+<!-- ============================= STEPS ============================ -->
+<section class="section steps" id="how">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<div class="eyebrow">How booking works</div>
+			<h2>From “let’s go” to “we’re going”.</h2>
+			<p>Planning Umrah, Hajj or a group trip? Here’s how to begin with Global Route Consultant.</p>
+		</div>
+		<div class="steps-grid">
+			<div class="step reveal"><div class="num">01</div><h3>Tell us the route</h3><p>Share your departure city, destination and preferred travel dates.</p></div>
+			<div class="step reveal"><div class="num">02</div><h3>Count your group</h3><p>Tell us the number of passengers and any family or group needs.</p></div>
+			<div class="step reveal"><div class="num">03</div><h3>Review the details</h3><p>Discuss schedules, hotel tiers, occupancy rates and applicable terms.</p></div>
+			<div class="step reveal"><div class="num">04</div><h3>Confirm your plan</h3><p>Proceed once all booking details and conditions are confirmed.</p></div>
+		</div>
+	</div>
+</section>
+
+<!-- ============================ REVIEWS =========================== -->
+<section class="section" id="reviews">
+	<div class="wrap">
+		<div class="section-head reveal">
+			<div class="eyebrow">Words from travellers</div>
+			<h2>Trusted by Canadian families.</h2>
+			<p>We value the trust travellers place in us and welcome honest feedback about their experience.</p>
+		</div>
+		<div class="review-grid">
+			<article class="review reveal"><div class="stars">★★★★★</div><p>“Our family Umrah was handled beautifully - seats together, connecting rooms, and an Imam who made the whole journey easy.”</p><div class="reviewer"><img src="<?php echo esc_url( grc_image( '2025/11/Review-1-600x600.jpeg' ) ); ?>" alt="Traveller portrait" width="39" height="39"><div><b>Family traveller</b><small>Mississauga, ON</small></div></div></article>
+			<article class="review reveal"><div class="stars">★★★★★</div><p>“Clear package rates, no hidden surprises. They explained the occupancy pricing so we could choose with confidence.”</p><div class="reviewer"><img src="<?php echo esc_url( grc_image( '2025/11/Review-2-600x600.jpeg' ) ); ?>" alt="Traveller portrait" width="39" height="39"><div><b>Group organiser</b><small>Toronto, ON</small></div></div></article>
+			<article class="review reveal"><div class="stars">★★★★★</div><p>“A welcoming first conversation about our December Umrah. The 2026 rates they shared matched the confirmed booking exactly.”</p><div class="reviewer"><img src="<?php echo esc_url( grc_image( '2025/11/Review-13-600x600.jpeg' ) ); ?>" alt="Traveller portrait" width="39" height="39"><div><b>Pilgrimage traveller</b><small>Brampton, ON</small></div></div></article>
+		</div>
+		<p style="font-size:9px;color:#8a958e;margin-top:14px">136+ Google reviews at 4.6★ - shown here as representative traveller feedback. Replace with permission-based customer testimonials before publishing.</p>
+	</div>
+</section>
+
+<!-- ============================== FAQ ============================= -->
+<section class="section" id="faq" style="background:#f4f0e7">
+	<div class="wrap faq-layout">
+		<div class="section-head reveal">
+			<div class="eyebrow">A few helpful answers</div>
+			<h2>Questions before you go?</h2>
+			<p>Answers to common Umrah, Hajj and travel questions. For exact availability and booking terms, contact Global Route Consultant.</p>
+			<a class="btn" href="#contact">Ask Us Directly ↗</a>
+		</div>
+		<div class="reveal">
+			<div class="faq-item open"><button class="faq-q" type="button">How do I see package rates? <span>＋</span></button><div class="faq-a">Browse the Packages &amp; Rates section above - every Diamond, Gold, Silver and Hajj package is listed with per-person occupancy rates (Quad, Triple, Double). Monthly 2026 pricing tables are listed further down the page.</div></div>
+			<div class="faq-item"><button class="faq-q" type="button">Do I need a visa to perform Umrah from Canada? <span>＋</span></button><div class="faq-a">Yes. Canadian citizens and permanent residents require an Umrah visa. Global Route Consultant handles the complete visa application process on your behalf - no trips to the Saudi consulate required.</div></div>
+			<div class="faq-item"><button class="faq-q" type="button">Which airport do packages depart from? <span>＋</span></button><div class="faq-a">All our group packages depart from Toronto Pearson International Airport (YYZ). We serve pilgrims from Mississauga, Toronto, Brampton, Scarborough, Vaughan, Oakville, Hamilton and across Ontario and Canada.</div></div>
+			<div class="faq-item"><button class="faq-q" type="button">Can families travel together on group departures? <span>＋</span></button><div class="faq-a">Absolutely. We regularly accommodate families, couples, seniors and first-time pilgrims, arranging connecting rooms and family-specific accommodations.</div></div>
+			<div class="faq-item"><button class="faq-q" type="button">What is the difference between Diamond, Gold and Silver? <span>＋</span></button><div class="faq-a">The tiers differ mainly in hotel category and distance from the Haram. Diamond offers the closest, highest-category hotels, Gold balances comfort and value, and Silver is the most economical option.</div></div>
+			<div class="faq-item"><button class="faq-q" type="button">Do you offer Hajj 2027 packages? <span>＋</span></button><div class="faq-a">Yes - Executive (11 Days), Comfort Premium (13 Days), Comfort Superior (14 Days) and Comfort Plus (17 Days). Contact us for current dates, inclusions and guidance.</div></div>
+			<div class="faq-item"><button class="faq-q" type="button">Is the website booking confirmed online? <span>＋</span></button><div class="faq-a">No. This website is an enquiry interface. Fares, availability, booking conditions and final confirmations are handled directly by Global Route Consultant.</div></div>
+		</div>
+	</div>
+</section>
+
+<!-- ============================ CONTACT =========================== -->
+<section class="section contact" id="contact">
+	<div class="wrap contact-grid">
+		<div class="contact-copy reveal">
+			<div class="eyebrow">Your next chapter starts here</div>
+			<h2>Let’s make a little world of memories.</h2>
+			<p>Have a destination in mind? Send your travel details or contact us directly. We’d love to hear where you’re planning to go.</p>
+			<div class="contact-details">
+				<div><b>☎</b><span><?php echo esc_html( $grc_phone ); ?></span></div>
+				<div><b>✉</b><span><?php echo esc_html( $grc_email ); ?></span></div>
+				<div><b>◉</b><span><?php echo esc_html( $grc_addr ); ?></span></div>
+				<div><b>✈</b><span>Flights · Umrah · Hajj · Tours · Groups</span></div>
+			</div>
+			<a class="btn" style="margin-top:25px" href="https://wa.me/<?php echo esc_attr( $grc_wa ); ?>?text=Assalam-o-Alaikum%2C%20I%20want%20to%20enquire%20about%20travel." target="_blank" rel="noopener">Chat on WhatsApp ↗</a>
+		</div>
+
+		<?php if ( isset( $_GET['grc_sent'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification ?>
+			<div class="admin-note" style="grid-column:1/-1">
+				<?php echo '1' === $_GET['grc_sent'] ? 'Thank you - your enquiry has been sent. We will reply shortly.' : 'Please fill in your name and email so we can reply.'; // phpcs:ignore WordPress.Security.NonceVerification ?>
+			</div>
+		<?php endif; ?>
+
+		<form class="contact-form reveal" id="contactForm" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<input type="hidden" name="action" value="grc_enquiry">
+			<h3>Send a travel enquiry</h3>
+			<div class="form-grid">
+				<div class="field"><label for="grc_c_name">YOUR NAME</label><input id="grc_c_name" name="grc_name" placeholder="Full name" required></div>
+				<div class="field"><label for="grc_c_email">EMAIL ADDRESS</label><input id="grc_c_email" name="grc_email" type="email" placeholder="<?php echo esc_attr( $grc_email ); ?>"></div>
+				<div class="field"><label for="grc_c_phone">PHONE / WHATSAPP</label><input id="grc_c_phone" name="grc_phone" type="tel" placeholder="Your number" required></div>
+				<div class="field"><label for="grc_c_type">WHAT DO YOU NEED?</label><select id="grc_c_type" name="grc_type"><option>Umrah Package</option><option>Hajj 2027</option><option>Flight Deal</option><option>Group/Family Tickets</option><option>Vacation / Cruise</option><option>Other</option></select></div>
+				<div class="field wide"><label for="grc_c_details">TRAVEL DETAILS</label><textarea id="grc_c_details" name="grc_details" placeholder="Destination, dates, travellers and your questions..." required></textarea></div>
+			</div>
+			<button class="btn" type="submit">Send Enquiry ↗</button>
+			<p class="fineprint">We use your details only to reply to this enquiry. Rates and availability are confirmed directly by Global Route Consultant.</p>
+		</form>
+	</div>
+</section>
+
+<!-- =========================== LAST CALL ========================== -->
+<section class="last-call">
+	<div class="wrap call-inner">
+		<div>
+			<h2>Somewhere beautiful is calling.</h2>
+			<p>Let Global Route Consultant help you take the first step.</p>
+		</div>
+		<a class="btn" href="tel:<?php echo esc_attr( $grc_tel ); ?>">Call <?php echo esc_html( $grc_phone ); ?> ↗</a>
+	</div>
+</section>
+
+<?php
+get_footer();
