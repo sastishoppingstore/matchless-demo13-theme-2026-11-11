@@ -361,7 +361,7 @@ function grc_menu_fallback() {
 		array( 'Packages & Rates', home_url( '/#pilgrimage' ) ),
 		array( '2026 Departures', home_url( '/#months' ) ),
 		array( 'All Packages', home_url( '/packages/' ) ),
-		array( 'All Pages', home_url( '/#services' ) ),
+		array( 'All Pages', home_url( '/#all-pages' ) ),
 		array( 'Contact', home_url( '/#contact' ) ),
 	);
 	foreach ( $grc_items as $grc_item ) {

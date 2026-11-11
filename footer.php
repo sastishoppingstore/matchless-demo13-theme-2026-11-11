@@ -22,7 +22,7 @@ $grc_tel   = preg_replace( '/[^0-9+]/', '', $grc_phone );
 					<span class="logo-icon"><img src="<?php echo esc_url( GRC_URI . '/assets/img/logo-emblem.png' ); ?>" alt="<?php echo esc_attr( $grc_brand ); ?> logo" width="43" height="43"></span>
 					<span><?php echo esc_html( strtoupper( $grc_brand ) ); ?><small><?php echo esc_html( grc_setting( 'brand_tagline' ) ); ?></small></span>
 				</a>
-				<p>Global Route Consultant curates Umrah, Hajj, flight and holiday travel from Canada - clear 2026 rates, trusted partners, and guidance at every step.</p>
+				<p>Thoughtful travel enquiries for Umrah, Hajj, flights, groups and holidays.</p>
 				<div class="socials">
 					<a href="https://wa.me/<?php echo esc_attr( $grc_wa ); ?>" aria-label="WhatsApp" target="_blank" rel="noopener">◉</a>
 					<a href="mailto:<?php echo esc_attr( $grc_email ); ?>" aria-label="Email">✉</a>
@@ -45,7 +45,6 @@ $grc_tel   = preg_replace( '/[^0-9+]/', '', $grc_phone );
 				<h4>Travel Services</h4>
 				<div class="foot-links">
 					<a href="<?php echo esc_url( home_url( '/packages/' ) ); ?>">All Packages &amp; Rates</a>
-					<a href="<?php echo esc_url( home_url( '/#months' ) ); ?>">Monthly Umrah</a>
 					<a href="<?php echo esc_url( home_url( '/hajj-2027-packages/' ) ); ?>">Hajj 2027</a>
 					<a href="<?php echo esc_url( home_url( '/flight-deals/' ) ); ?>">Flight Deals</a>
 					<a href="<?php echo esc_url( home_url( '/royal-caribbean/' ) ); ?>">Cruises</a>
@@ -59,7 +58,7 @@ $grc_tel   = preg_replace( '/[^0-9+]/', '', $grc_phone );
 					<a href="tel:<?php echo esc_attr( $grc_tel ); ?>"><?php echo esc_html( $grc_phone ); ?></a>
 					<a href="mailto:<?php echo esc_attr( $grc_email ); ?>"><?php echo esc_html( $grc_email ); ?></a>
 					<a href="https://wa.me/<?php echo esc_attr( $grc_wa ); ?>" target="_blank" rel="noopener">WhatsApp Us</a>
-					<span style="line-height:1.7"><?php echo esc_html( $grc_addr ); ?></span>
+					<a href="<?php echo esc_url( grc_setting( 'map_link' ) ); ?>" target="_blank" rel="noopener">Get Directions ↗</a>
 				</div>
 			</div>
 		</div>
