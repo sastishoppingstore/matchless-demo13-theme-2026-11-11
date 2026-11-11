@@ -351,19 +351,45 @@ function grc_blocks_to_html( $blocks ) {
 }
 
 /* -------------------------------------------------------------------------
- * Menus fallback
+ * Menus fallback - flat <a> list, exactly like the demo13 reference markup
  * ---------------------------------------------------------------------- */
 function grc_menu_fallback() {
-	echo '<ul class="links">';
-	echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'grc-consultant' ) . '</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/#about' ) ) . '">' . esc_html__( 'About', 'grc-consultant' ) . '</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/#services' ) ) . '">' . esc_html__( 'Services', 'grc-consultant' ) . '</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/#packages' ) ) . '">' . esc_html__( 'Packages & Rates', 'grc-consultant' ) . '</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/#months' ) ) . '">' . esc_html__( '2026 Departures', 'grc-consultant' ) . '</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/packages/' ) ) . '">' . esc_html__( 'All Packages', 'grc-consultant' ) . '</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/#pages' ) ) . '">' . esc_html__( 'All Pages', 'grc-consultant' ) . '</a></li>';
-	echo '<li><a href="' . esc_url( home_url( '/#contact' ) ) . '">' . esc_html__( 'Contact', 'grc-consultant' ) . '</a></li>';
-	echo '</ul>';
+	$grc_items = array(
+		array( 'Home', home_url( '/' ) ),
+		array( 'About', home_url( '/#about' ) ),
+		array( 'Services', home_url( '/#services' ) ),
+		array( 'Packages & Rates', home_url( '/#pilgrimage' ) ),
+		array( '2026 Departures', home_url( '/#months' ) ),
+		array( 'All Packages', home_url( '/packages/' ) ),
+		array( 'All Pages', home_url( '/#services' ) ),
+		array( 'Contact', home_url( '/#contact' ) ),
+	);
+	foreach ( $grc_items as $grc_item ) {
+		printf( '<a href="%s">%s</a>', esc_url( $grc_item[1] ), esc_html( $grc_item[0] ) );
+	}
+}
+
+/**
+ * Flat nav walker: renders menu items as direct <a> children of .links
+ * (no <ul>/<li>), matching the demo13 reference markup exactly.
+ */
+class GRC_Flat_Nav_Walker extends Walker_Nav_Menu {
+
+	public function start_lvl( &$output, $depth = 0, $args = null ) {}
+
+	public function end_lvl( &$output, $depth = 0, $args = null ) {}
+
+	public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+		$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes[] = 'menu-item-' . $item->ID;
+		$class_names = implode( ' ', array_filter( $classes ) );
+		$output     .= '<a href="' . esc_url( $item->url ) . '" class="' . esc_attr( $class_names ) . '">';
+		$output     .= esc_html( $item->title );
+	}
+
+	public function end_el( &$output, $item, $depth = 0, $args = null ) {
+		$output .= '</a>';
+	}
 }
 
 /* -------------------------------------------------------------------------

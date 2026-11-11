@@ -99,13 +99,13 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 <section class="section" id="about">
 	<div class="wrap intro">
 		<div class="intro-visual reveal">
-			<img class="big" src="<?php echo esc_url( grc_image( '2026/04/Umrah-Package-2026.webp' ) ); ?>" alt="Makkah and Madinah pilgrimage package" loading="lazy">
-			<img class="small" src="<?php echo esc_url( GRC_URI . '/assets/img/logo.svg' ); ?>" alt="Global Route Consultant logo" loading="lazy">
+			<img class="big" src="<?php echo esc_url( grc_image( '2026/04/Umrah-Package-2026.webp' ) ); ?>" alt="Khana Kaaba, Makkah - the focal point of every Umrah journey" loading="lazy">
+			<img class="small" src="<?php echo esc_url( grc_image( '2025/11/Untitled-design-4-scaled.png' ) ); ?>" alt="Masjid an-Nabawi, Madinah" loading="lazy">
 			<div class="round-note">Plan with<br>a global<br>perspective</div>
 		</div>
 		<div class="intro-copy reveal">
 			<div class="eyebrow">A little about us</div>
-			<h2>Travel is more than places. It’s how they make you feel.</h2>
+			<h2>Your journey to the holy cities, planned with care.</h2>
 			<p>Global Route Consultant brings your travel enquiries together in one welcoming place. Whether you are planning Umrah, Hajj, flights, a cruise or a family holiday, start by telling us what matters to you.</p>
 			<p>We are a TICO-registered, IATA-certified and ACTO-registered agency based in Mississauga, Ontario - proudly serving pilgrims from across the Greater Toronto Area and all of Canada.</p>
 			<div class="ticks">
@@ -270,10 +270,10 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 		</div>
 		<div class="destinations reveal">
 			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/04/Umrah-Package-2026.webp' ) ); ?>" alt="Makkah and Madinah" width="1200" height="800"><div class="place-info"><span>SAUDI ARABIA</span><h3>Makkah &amp; Madinah</h3></div></div>
-			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/10/MTC-Saudi-Airline-umrah.jpg' ) ); ?>" alt="Flights to Saudi Arabia" width="900" height="900"><div class="place-info"><span>SAUDIA AIRLINES</span><h3>Direct Flights</h3></div></div>
-			<div class="place"><img src="<?php echo esc_url( grc_image( '2025/11/featured-deals-2.jpeg' ) ); ?>" alt="Umrah packages" width="900" height="900"><div class="place-info"><span>UMRAH PACKAGES</span><h3>2026 Departures</h3></div></div>
-			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/07/Hajj-executive-2027-1.webp' ) ); ?>" alt="Hajj 2027 packages" width="900" height="900"><div class="place-info"><span>HAJJ 2027</span><h3>Executive &amp; Comfort</h3></div></div>
-			<div class="place"><img src="<?php echo esc_url( grc_image( '2026/11/b1.webp' ) ); ?>" alt="Canada departures" width="900" height="900"><div class="place-info"><span>FROM CANADA</span><h3>Toronto &amp; GTA</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2025/11/Untitled-design-4-scaled.png' ) ); ?>" alt="Madinah" width="900" height="900"><div class="place-info"><span>MADINAH</span><h3>Masjid an-Nabawi</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2025/11/06-1-1.jpg' ) ); ?>" alt="Makkah" width="900" height="900"><div class="place-info"><span>MAKKAH</span><h3>Masjid al-Haram</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2025/11/311_11zon.png' ) ); ?>" alt="Hajj and Umrah pilgrims" width="900" height="900"><div class="place-info"><span>HAJJ &amp; UMRAH</span><h3>Imam-led groups</h3></div></div>
+			<div class="place"><img src="<?php echo esc_url( grc_image( '2025/03/3rd-aug.jpg' ) ); ?>" alt="Canada departures" width="900" height="900"><div class="place-info"><span>FROM CANADA</span><h3>Toronto &amp; GTA</h3></div></div>
 		</div>
 	</div>
 </section>
@@ -282,7 +282,7 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 <section class="section" id="why" style="background:#f4f0e7">
 	<div class="wrap why-grid">
 		<div class="why-photo reveal">
-			<img src="<?php echo esc_url( grc_image( '2025/11/featured-deals-2.jpeg' ) ); ?>" alt="Global Route Consultant travel planning" loading="lazy">
+			<img src="<?php echo esc_url( grc_image( '2025/11/311_11zon.png' ) ); ?>" alt="Pilgrims at the Kaaba during Umrah" loading="lazy">
 			<div class="why-stamp">Go with<br>confidence.</div>
 		</div>
 		<div class="intro-copy reveal">

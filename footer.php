@@ -19,12 +19,8 @@ $grc_tel   = preg_replace( '/[^0-9+]/', '', $grc_phone );
 		<div class="footer-grid">
 			<div>
 				<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<?php if ( has_custom_logo() ) : ?>
-						<?php the_custom_logo(); ?>
-					<?php else : ?>
-						<span class="logo-icon">✈</span>
-						<span><?php echo esc_html( strtoupper( $grc_brand ) ); ?><small><?php echo esc_html( grc_setting( 'brand_tagline' ) ); ?></small></span>
-					<?php endif; ?>
+					<span class="logo-icon"><img src="<?php echo esc_url( GRC_URI . '/assets/img/logo-emblem.png' ); ?>" alt="<?php echo esc_attr( $grc_brand ); ?> logo" width="43" height="43"></span>
+					<span><?php echo esc_html( strtoupper( $grc_brand ) ); ?><small><?php echo esc_html( grc_setting( 'brand_tagline' ) ); ?></small></span>
 				</a>
 				<p>Global Route Consultant curates Umrah, Hajj, flight and holiday travel from Canada - clear 2026 rates, trusted partners, and guidance at every step.</p>
 				<div class="socials">
