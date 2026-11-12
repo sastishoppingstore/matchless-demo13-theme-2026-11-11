@@ -19,7 +19,7 @@ $grc_tel   = preg_replace( '/[^0-9+]/', '', $grc_phone );
 		<div class="footer-grid">
 			<div>
 				<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<span class="logo-icon"><img src="<?php echo esc_url( GRC_URI . '/assets/img/logo-emblem.png' ); ?>" alt="<?php echo esc_attr( $grc_brand ); ?> logo" width="43" height="43"></span>
+					<span class="logo-icon" aria-hidden="true">✈</span><span class="screen-reader-text"><?php echo esc_html( $grc_brand ); ?></span>
 					<span><?php echo esc_html( strtoupper( $grc_brand ) ); ?><small><?php echo esc_html( grc_setting( 'brand_tagline' ) ); ?></small></span>
 				</a>
 				<p>Thoughtful travel enquiries for Umrah, Hajj, flights, groups and holidays.</p>
@@ -46,7 +46,7 @@ $grc_tel   = preg_replace( '/[^0-9+]/', '', $grc_phone );
 				<div class="foot-links">
 					<a href="<?php echo esc_url( home_url( '/packages/' ) ); ?>">All Packages &amp; Rates</a>
 					<a href="<?php echo esc_url( home_url( '/hajj-2027-packages/' ) ); ?>">Hajj 2027</a>
-					<a href="<?php echo esc_url( home_url( '/flight-deals/' ) ); ?>">Flight Deals</a>
+					<a href="<?php echo esc_url( grc_link( grc_setting( 'flight_booking_url' ) ) ); ?>">Flight Deals</a>
 					<a href="<?php echo esc_url( home_url( '/royal-caribbean/' ) ); ?>">Cruises</a>
 					<a href="<?php echo esc_url( home_url( '/customized/' ) ); ?>">Customized Umrah</a>
 				</div>

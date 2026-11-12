@@ -14,17 +14,14 @@ $grc_tag    = grc_setting( 'brand_tagline' );
 $grc_email  = grc_setting( 'email' );
 $grc_addr   = grc_setting( 'address' );
 $grc_wa     = grc_setting( 'whatsapp' );
-$grc_emblem = GRC_URI . '/assets/img/logo-emblem.png';
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="<?php echo esc_attr( $grc_brand . ' - Umrah & Hajj packages from Canada with 2026 rates, flights, cruises and customized travel. Serving Toronto, Mississauga and the GTA.' ); ?>">
-<meta name="keywords" content="Umrah packages Canada, Hajj 2027, Global Route Consultant, Mississauga travel agency, Diamond Umrah, Gold Umrah, Silver Umrah, group tickets, flight deals, cruises">
 <meta name="theme-color" content="#f4f0e7">
-<link rel="icon" href="<?php echo esc_url( GRC_URI . '/assets/img/logo-emblem.png' ); ?>" type="image/png">
+<link rel="icon" href="<?php echo esc_url( GRC_URI . '/assets/img/favicon.png' ); ?>" type="image/png" sizes="512x512">
 <?php wp_head(); ?>
 <style id="grc-fix">html,body{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%}*,*::before,*::after{box-sizing:border-box}img,video,iframe,svg{max-width:100%;height:auto}body{margin:0}.container,.wrap,.w,.wrapper{max-width:100%}</style>
 </head>
@@ -41,7 +38,7 @@ $grc_emblem = GRC_URI . '/assets/img/logo-emblem.png';
 <header class="header">
 	<div class="wrap nav">
 		<a class="logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<span class="logo-icon"><img src="<?php echo esc_url( $grc_emblem ); ?>" alt="<?php echo esc_attr( $grc_brand ); ?> logo" width="43" height="43"></span>
+			<span class="logo-icon" aria-hidden="true">✈</span><span class="screen-reader-text"><?php echo esc_html( $grc_brand ); ?></span>
 			<span><?php echo esc_html( strtoupper( $grc_brand ) ); ?><small><?php echo esc_html( $grc_tag ); ?></small></span>
 		</a>
 

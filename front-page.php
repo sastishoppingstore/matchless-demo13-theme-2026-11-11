@@ -39,7 +39,7 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			<h1><?php echo esc_html( grc_setting( 'hero_title_1' ) ); ?><br><?php echo esc_html( grc_setting( 'hero_title_2' ) ); ?><br><i><?php echo esc_html( grc_setting( 'hero_title_3' ) ); ?></i></h1>
 			<p><?php echo esc_html( grc_setting( 'hero_text' ) ); ?></p>
 			<div class="hero-actions">
-				<a class="btn" href="#pilgrimage">View Packages &amp; Rates ↗</a>
+				<a class="btn" href="#pilgrimage">View Packages ↗</a>
 				<a class="btn btn-light" href="#tours">Explore Destinations</a>
 			</div>
 		</div>
@@ -57,7 +57,7 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 			<h3>Where would you like to go?</h3>
 			<span>LET'S START PLANNING</span>
 		</div>
-		<div class="tabs" role="tablist" aria-label="Travel type">
+		<div class="tabs" role="group" aria-label="Travel type">
 			<button class="tab active" type="button" data-kind="Umrah Package">☾ Umrah</button>
 			<button class="tab" type="button" data-kind="Hajj Package">✧ Hajj</button>
 			<button class="tab" type="button" data-kind="Flight Deal">✈ Flights</button>
@@ -122,21 +122,37 @@ $grc_tier_order = array( 'Diamond', 'Gold', 'Silver', 'Hajj', 'Umrah' );
 <!-- =========================== SERVICES ========================== -->
 <section class="section" id="services" style="background:#f4f0e7">
 	<div class="wrap">
-		<div class="section-head reveal">
-			<div class="eyebrow">What we can help with</div>
-			<h2>One travel partner.<br>Many ways to explore.</h2>
-			<p>Choose the service you need and send us your travel details. We’ll help you take the next step.</p>
+		<div class="services-top">
+			<div class="section-head reveal">
+				<div class="eyebrow">What we can help with</div>
+				<h2>One travel partner.<br>Many ways to explore.</h2>
+				<p>Choose the service you need and send us your travel details. We’ll help you take the next step.</p>
+			</div>
+
+			<!-- GRC-only visa consultant card -->
+			<article class="visa-card reveal" id="visa-consultant">
+				<div class="visa-card-main">
+					<div class="symbol">◈</div>
+					<div>
+						<h3><?php echo esc_html( grc_setting( 'visa_name' ) ); ?></h3>
+						<p><?php echo esc_html( grc_setting( 'visa_text' ) ); ?></p>
+						<span class="visa-meta">Canada · USA · UK · Schengen · Saudi Arabia</span>
+					</div>
+				</div>
+				<a class="btn" href="<?php echo esc_url( grc_link( grc_setting( 'visa_url' ) ) ); ?>"><?php echo esc_html( grc_setting( 'visa_cta' ) ); ?> ↗</a>
+			</article>
 		</div>
 		<div class="service-grid">
 			<article class="service reveal"><div class="symbol">☾</div><h3>Umrah Packages</h3><p>Diamond, Gold, Silver and customized Umrah packages from Toronto (YYZ).</p><a href="#pilgrimage">VIEW UMRAH ↗</a></article>
 			<article class="service reveal"><div class="symbol">✧</div><h3>Hajj 2027</h3><p>Executive, Comfort Premium, Comfort Superior and Comfort Plus Hajj.</p><a href="<?php echo esc_url( home_url( '/hajj-2027-packages/' ) ); ?>">HAJJ ENQUIRY ↗</a></article>
 			<article class="service reveal"><div class="symbol">♧</div><h3>Group Tickets</h3><p>Flight enquiries for families, companies, schools and larger groups.</p><a href="<?php echo esc_url( home_url( '/group-umrah-packages/' ) ); ?>">GROUP ENQUIRY ↗</a></article>
-			<article class="service reveal"><div class="symbol">✈</div><h3>Flight Deals</h3><p>Domestic and international flight enquiries and route planning.</p><a href="<?php echo esc_url( home_url( '/flight-deals/' ) ); ?>">ASK ABOUT FLIGHTS ↗</a></article>
+			<article class="service reveal"><div class="symbol">✈</div><h3>Flight Deals</h3><p>Domestic and international flight enquiries and route planning.</p><a href="<?php echo esc_url( grc_link( grc_setting( 'flight_booking_url' ) ) ); ?>">ASK ABOUT FLIGHTS ↗</a></article>
 			<article class="service reveal"><div class="symbol">▣</div><h3>Customized Umrah</h3><p>Build your own Umrah - nights, hotel tier, occupancy and flights.</p><a href="<?php echo esc_url( home_url( '/customized/' ) ); ?>">CUSTOMIZE ↗</a></article>
 			<article class="service reveal"><div class="symbol">⌖</div><h3>Vacations &amp; Cruises</h3><p>Disney Cruise Line, Royal Caribbean and leisure family getaways.</p><a href="<?php echo esc_url( home_url( '/royal-caribbean/' ) ); ?>">VIEW TOURS ↗</a></article>
 			<article class="service reveal"><div class="symbol">◎</div><h3>Family Travel</h3><p>Seats together, connecting rooms, child visa processing - every family detail handled.</p><a href="<?php echo esc_url( home_url( '/family-umrah-packages/' ) ); ?>">PLAN TOGETHER ↗</a></article>
 			<article class="service reveal"><div class="symbol">♢</div><h3>Travel Guidance</h3><p>Visa help, Ziyarat planning, travel documents and terms explained before you book.</p><a href="<?php echo esc_url( home_url( '/umrah-travel-inquiry/' ) ); ?>">TALK TO US ↗</a></article>
 		</div>
+
 	</div>
 </section>
 

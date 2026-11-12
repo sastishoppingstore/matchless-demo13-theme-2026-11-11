@@ -71,7 +71,27 @@ function grc_defaults() {
 		'hero_text'     => 'Global Route Consultant curates Umrah, Hajj, flight and holiday travel from Canada - with clear 2026 rates, trusted partners and guidance at every step.',
 		'hero_image'    => 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=90',
 		'map_link'      => 'https://www.google.com/maps/search/?api=1&query=2550+Argentia+Road+Suite+107+Mississauga+ON',
+		/* Editable from Appearance → Customize → Brand & Contact */
+		'flight_booking_url' => '/flight-deals/',
+		'visa_name'          => 'Visa Consultant',
+		'visa_text'          => 'Schengen, US, UK, Canada and Saudi visa guidance from a dedicated consultant - document checks, appointments and application support.',
+		'visa_cta'           => 'Book a visa consultation',
+		'visa_url'           => '/#contact',
 	);
+}
+
+/**
+ * Resolve a setting that holds a link: site-relative links get home_url().
+ */
+function grc_link( $url ) {
+	$url = trim( (string) $url );
+	if ( '' === $url ) {
+		return home_url( '/' );
+	}
+	if ( '/' === $url[0] ) {
+		return home_url( $url );
+	}
+	return $url;
 }
 
 function grc_setting( $key ) {
@@ -88,12 +108,13 @@ function grc_customize_register( $wp_customize ) {
 		'description' => __( 'Global Route Consultant branding, phone numbers, email and office address.', 'grc-consultant' ),
 	) );
 	foreach ( $defaults as $key => $label ) {
-		if ( in_array( $key, array( 'hero_image', 'map_link' ), true ) ) {
+		if ( in_array( $key, array( 'hero_image', 'map_link', 'visa_text' ), true ) ) {
 			continue;
 		}
+		$is_url = in_array( $key, array( 'flight_booking_url', 'visa_url' ), true );
 		$wp_customize->add_setting( 'grc_' . $key, array(
 			'default'           => $label,
-			'sanitize_callback' => 'sanitize_text_field',
+			'sanitize_callback' => $is_url ? 'esc_url_raw' : 'sanitize_text_field',
 			'transport'         => 'refresh',
 		) );
 		$wp_customize->add_control( 'grc_' . $key, array(
@@ -102,6 +123,17 @@ function grc_customize_register( $wp_customize ) {
 			'type'    => 'text',
 		) );
 	}
+	$wp_customize->add_setting( 'grc_visa_text', array(
+		'default'           => $defaults['visa_text'],
+		'sanitize_callback' => 'sanitize_textarea_field',
+		'transport'         => 'refresh',
+	) );
+	$wp_customize->add_control( 'grc_visa_text', array(
+		'label'       => __( 'Visa consultant card text', 'grc-consultant' ),
+		'description' => __( 'Shown on the visa consultant card on the home page.', 'grc-consultant' ),
+		'section'     => 'grc_brand',
+		'type'        => 'textarea',
+	) );
 	$wp_customize->add_setting( 'grc_hero_image', array(
 		'default'           => $defaults['hero_image'],
 		'sanitize_callback' => 'esc_url_raw',
@@ -441,3 +473,127 @@ function grc_mime_types( $mimes ) {
 	return $mimes;
 }
 add_filter( 'upload_mime_types', 'grc_mime_types' );
+
+/* -------------------------------------------------------------------------
+ * SEO
+ * ---------------------------------------------------------------------- */
+/**
+ * Tight, keyword-led front page title (the WP.com default was 140+ chars).
+ */
+function grc_document_title_parts( $parts ) {
+	if ( is_front_page() ) {
+		$parts['title'] = 'Umrah & Hajj Packages from Canada';
+		$parts['site']  = grc_setting( 'brand_name' );
+		unset( $parts['tagline'] );
+	}
+	return $parts;
+}
+add_filter( 'document_title_parts', 'grc_document_title_parts' );
+
+/**
+ * Keep the social (Open Graph / Twitter) copy in sync with the SEO title and
+ * meta description that WP.com/Jetpack generates for the home page.
+ */
+function grc_open_graph_tags( $tags ) {
+	if ( is_front_page() ) {
+		$desc = 'Umrah & Hajj packages from Canada with clear 2026 rates, flights, cruises and customized travel. Mississauga-based agency serving Toronto and the GTA.';
+		$tags['og:title']        = 'Umrah & Hajj Packages from Canada – Global Route Consultant';
+		$tags['og:description']  = $desc;
+		$tags['twitter:text:title'] = 'Umrah & Hajj Packages from Canada';
+		$tags['twitter:description'] = $desc;
+	}
+	return $tags;
+}
+add_filter( 'jetpack_open_graph_tags', 'grc_open_graph_tags' );
+
+/**
+ * WP.com/Jetpack disables core XML sitemaps while its own sitemap index is
+ * empty on this site, which left /sitemap.xml redirecting to a 404. Re-enable
+ * the core sitemap so search engines can discover every page and package.
+ */
+add_filter( 'wp_sitemaps_enabled', '__return_true', 999 );
+
+/**
+ * TravelAgency structured data for the home page (rich results + local SEO).
+ */
+function grc_schema_jsonld() {
+	if ( ! is_front_page() ) {
+		return;
+	}
+	$phone  = preg_replace( '/[^0-9+]/', '', grc_setting( 'phone_primary' ) );
+	$schema = array(
+		'@context'    => 'https://schema.org',
+		'@type'       => 'TravelAgency',
+		'@id'         => home_url( '/#travelagency' ),
+		'name'        => grc_setting( 'brand_name' ),
+		'url'         => home_url( '/' ),
+		'logo'        => GRC_URI . '/assets/img/logo.png',
+		'image'       => GRC_URI . '/assets/img/logo.png',
+		'description' => 'Umrah, Hajj, flight and holiday travel agency based in Mississauga, Ontario, serving Toronto and the GTA with clear 2026 packages and rates.',
+		'telephone'   => $phone,
+		'email'       => grc_setting( 'email' ),
+		'priceRange'  => '$$',
+		'currenciesAccepted' => 'CAD',
+		'address'     => array(
+			'@type'           => 'PostalAddress',
+			'streetAddress'   => '2550 Argentia Road, Suite 107',
+			'addressLocality' => 'Mississauga',
+			'addressRegion'   => 'ON',
+			'postalCode'      => 'L5N 5R1',
+			'addressCountry'  => 'CA',
+		),
+		'areaServed'  => array( 'Toronto', 'Mississauga', 'Brampton', 'Scarborough', 'Vaughan', 'Hamilton', 'Oakville', 'Canada' ),
+		'openingHoursSpecification' => array(
+			array(
+				'@type'     => 'OpeningHoursSpecification',
+				'dayOfWeek' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ),
+				'opens'     => '10:00',
+				'closes'    => '18:00',
+			),
+		),
+		'hasOfferCatalog' => array(
+			'@type' => 'OfferCatalog',
+			'name'  => 'Umrah and Hajj packages from Canada',
+			'itemListElement' => array(
+				array( '@type' => 'Offer', 'itemOffered' => array( '@type' => 'Service', 'name' => 'Diamond Umrah Packages' ) ),
+				array( '@type' => 'Offer', 'itemOffered' => array( '@type' => 'Service', 'name' => 'Gold Umrah Packages' ) ),
+				array( '@type' => 'Offer', 'itemOffered' => array( '@type' => 'Service', 'name' => 'Silver Umrah Packages' ) ),
+				array( '@type' => 'Offer', 'itemOffered' => array( '@type' => 'Service', 'name' => 'Hajj 2027 Packages' ) ),
+			),
+		),
+	);
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'grc_schema_jsonld', 30 );
+
+/**
+ * Preconnect to the font CDN so the first paint is quick.
+ */
+function grc_resource_hints( $hints, $relation ) {
+	if ( 'preconnect' === $relation ) {
+		$hints[] = array( 'href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous' );
+	}
+	return $hints;
+}
+add_filter( 'wp_resource_hints', 'grc_resource_hints', 10, 2 );
+
+/**
+ * 301 old 2025 package URLs to their 2026 equivalents (keeps old links alive).
+ */
+function grc_legacy_2025_redirect() {
+	if ( ! is_404() ) {
+		return;
+	}
+	$path = trim( (string) parse_url( isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '', PHP_URL_PATH ), '/' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+	if ( '' === $path || false === strpos( $path, '2025' ) || false === strpos( $path, 'package' ) ) {
+		return;
+	}
+	$new = str_replace( '2025', '2026', $path );
+	if ( 0 !== strpos( $new, 'package/' ) ) {
+		$new = 'package/' . $new;
+	}
+	$target = home_url( '/' . $new . '/' );
+	wp_safe_redirect( $target, 301 );
+	exit;
+}
+add_action( 'template_redirect', 'grc_legacy_2025_redirect' );
